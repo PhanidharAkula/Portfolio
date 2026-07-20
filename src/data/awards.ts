@@ -8,8 +8,19 @@ export const awards: Award[] = [
   {
     year: "2026",
     title:
+      "First-author paper under review · Attributable Cross-Simulator Benchmarking for Urban Traffic Simulation",
+    org: "IEEE T-ITS · with Dr. DJ Rao",
+  },
+  {
+    year: "2026",
+    title:
       "First-author paper under review · CITYSCAPE: A Digital Twin Framework for Work-Commute Dynamics",
     org: "Frontiers · with Dr. DJ Rao",
+  },
+  {
+    year: "2026",
+    title: "M.S. thesis defended · SimForge released under Apache-2.0 with a citable Zenodo DOI",
+    org: "Miami University",
   },
   {
     year: "2026",
@@ -48,7 +59,22 @@ export const awards: Award[] = [
   },
 ];
 
-export const press: { source: string; title: string; href: string }[] = [
+export const press: { source: string; title: string; href?: string }[] = [
+  {
+    source: "IEEE T-ITS · 2026 · under review",
+    title:
+      "Attributable Cross-Simulator Benchmarking for Urban Traffic Simulation: Reproducibility, Consistency, and Regime-Dependent Divergence",
+  },
+  {
+    source: "Frontiers · 2026 · under review",
+    title:
+      "CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics and Roadway Infrastructure Demand",
+  },
+  {
+    source: "Zenodo · 2026 · software",
+    title: "SimForge · reproducible cross-simulator benchmarking framework (Apache-2.0)",
+    href: "https://doi.org/10.5281/zenodo.21385983",
+  },
   {
     source: "IJSREM · 2023",
     title: "Topic Modelling of Web Pages with LDA Methods",

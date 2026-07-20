@@ -89,7 +89,7 @@ export function About() {
                     <line x1="0" y1="412" x2="400" y2="412" />
                   </g>
                   <g fill="#f4ecd8" fillOpacity="0.4" fontFamily="JetBrains Mono, monospace" fontSize="9">
-                    <text x="20" y="490">OXFORD · OH · 39.5N 84.7W</text>
+                    <text x="20" y="490">TAMPA · FL · 27.9N 82.5W</text>
                   </g>
                 </svg>
                 <img
@@ -114,7 +114,7 @@ export function About() {
                 {/* Bottom fade so the portrait dissolves into the page ink */}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
                 <div className="absolute inset-x-8 top-7 flex items-center justify-between mono-mini text-bone z-[2]">
-                  <span><span className="text-acid">●</span> 39.5°N · 84.7°W</span>
+                  <span><span className="text-acid">●</span> 27.9°N · 82.5°W</span>
                   <span>FRAME 0001</span>
                 </div>
                 <div className="absolute inset-x-8 bottom-7 flex items-center justify-between mono-mini text-bone z-[2]">

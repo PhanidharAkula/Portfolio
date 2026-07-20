@@ -123,7 +123,7 @@ export function Navigation() {
           <div className="col-span-3 col-start-10 flex items-center justify-end gap-4">
             <div className="hidden md:flex flex-col items-end leading-tight gap-1">
               <span className="mono-mini text-acid tabular">{formatted} ET</span>
-              <span className="mono-mini text-bone/45">39.5°N · 84.7°W</span>
+              <span className="mono-mini text-bone/45">27.9°N · 82.5°W</span>
             </div>
             <button
               onClick={() => setOpen(true)}

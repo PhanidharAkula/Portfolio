@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowDownRight, Download } from "lucide-react";
+import { ArrowDownRight } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { HeroScene } from "../components/three/HeroScene";
 // import { SceneWaves as HeroScene } from "../components/three/scenes/SceneWaves";
@@ -11,6 +11,7 @@ import { HeroScene } from "../components/three/HeroScene";
 // import { SceneSolarSystem as HeroScene } from "../components/three/scenes/SceneSolarSystem";
 import { profile } from "../data/profile";
 import { MagneticButton } from "../components/ui/MagneticButton";
+import { CVMenu } from "../components/ui/CVMenu";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -129,8 +130,8 @@ export function Hero() {
             className="col-span-12 sm:col-span-6 lg:col-span-3 flex flex-col gap-1 mono-mini text-bone/60 lg:pt-[6px]"
           >
             <span>/ NOW</span>
-            <span className="text-bone">M.S. CS · Miami University</span>
-            <span className="text-bone/55">Thesis · SimForge · cross-simulator HPC</span>
+            <span className="text-bone">M.S. CS · Miami University · Aug 2026</span>
+            <span className="text-bone/55">Thesis defended · SimForge · Jul 2026</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -147,15 +148,7 @@ export function Hero() {
               <span>Selected Work</span>
               <ArrowDownRight size={14} />
             </MagneticButton>
-            <MagneticButton
-              href={profile.cv}
-              download
-              className="btn-outline"
-              cursor="link"
-              cursorLabel="Download"
-            >
-              <Download size={14} /> CV.PDF
-            </MagneticButton>
+            <CVMenu className="btn-outline" label="CV.PDF" direction="up" align="right" />
           </motion.div>
         </div>
 

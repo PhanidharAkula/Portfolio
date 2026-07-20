@@ -54,12 +54,13 @@ export function Research() {
                 property, not an input asymmetry.
               </p>
               <p className="text-bone/70 leading-relaxed">
-                Across the OSC Pitzer, Cardinal and Ascend clusters, a state-aware BFS pre-router
-                with OSM turn-restrictions compresses NYC 500K-trip pre-routing from ~68h to
-                ~5–8h (~25–30× speedup) via 16-way multiprocessing and a JSONL content-addressed
-                cache. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA;
-                calibrated against US Census PUMS microdata (2.4M–6.8M persons), lifting realism
-                from ~20–40% baseline to ~70–72%.
+                Across the OSC Pitzer and Cardinal clusters, a state-aware BFS pre-router with
+                OSM turn-restrictions compresses shared-route pre-routing from 141.9h to 7.1h
+                (20× cold-cache, 228× warm) via deterministic route caching and 16-way
+                parallelism. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC
+                and LA at demand tiers up to 500K trips; calibrated against US Census PUMS
+                microdata (2.4M–6.8M persons) — revealing regime-dependent cross-engine
+                behavior and up to 96% travel-time divergence under saturation.
               </p>
               <div className="flex flex-wrap gap-2">
                 {["Python", "SLURM", "SUMO", "MATSim", "DTALite", "OSM", "PUMS"].map((t) => (
@@ -67,7 +68,8 @@ export function Research() {
                 ))}
               </div>
               <span className="mono-mini text-bone/45 self-start">
-                Thesis preprint <span className="text-plasma">·</span> in preparation
+                Defended Jul 2026 <span className="text-plasma">·</span> under review at IEEE
+                T-ITS <span className="text-plasma">·</span> Apache-2.0 · Zenodo DOI
               </span>
             </div>
           </Reveal>
@@ -80,7 +82,7 @@ export function Research() {
                   <span className="dot bg-acid h-2 w-2 rounded-full" /> RUN · NYC500 · LIVE
                 </div>
                 <div className="mono-mini text-bone/55">
-                  OSC · PITZER · CARDINAL · ASCEND
+                  OSC · PITZER · CARDINAL
                 </div>
               </div>
               <div className="grid grid-cols-12 gap-4 p-5">
@@ -117,9 +119,9 @@ export function Research() {
                     </div>
                     <div>
                       <div className="text-bone display-italic text-2xl">
-                        <NumberTicker value={25} suffix="×" />
+                        <NumberTicker value={228} suffix="×" />
                       </div>
-                      SPEEDUP
+                      WARM SPEEDUP
                     </div>
                     <div>
                       <div className="text-bone display-italic text-2xl">

@@ -21,12 +21,12 @@ export const projects: Project[] = [
     index: "01",
     title: "SIMFORGE",
     category: "Research",
-    year: "Aug 2024 – Present",
-    role: "Lead Researcher · M.S. Thesis",
+    year: "Aug 2024 – Jul 2026",
+    role: "Lead Researcher · M.S. Thesis (defended Jul 2026)",
     blurb:
-      "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle.",
+      "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle — open-sourced under Apache-2.0 with a citable Zenodo DOI.",
     description:
-      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at five demand tiers from 1K to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons via ModelGen, and deployed across the OSC Pitzer and Cardinal clusters with cluster-specific SBATCH tuning. During the research phase I evaluated GPU-accelerated traffic simulators (LPSim and QarSUMO on NVIDIA V100) and additional engines (POLARIS), then scoped the framework to three CPU-based engines after analyzing GPU performance and accessibility limitations. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage.",
+      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes; deterministic route caching and 16-way parallelism cut shared-route pre-routing from 141.9 hours to 7.1 hours (20× cold-cache, 228× warm). Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at demand tiers up to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons, and deployed across the OSC Pitzer and Cardinal clusters — revealing regime-dependent cross-engine behavior with up to 96% travel-time divergence under saturation. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage. Released under Apache-2.0 with a citable Zenodo DOI (10.5281/zenodo.21385983); the paper is under review at IEEE T-ITS.",
     stack: [
       "Python",
       "OpenMP",
@@ -41,9 +41,9 @@ export const projects: Project[] = [
       "US Census PUMS",
     ],
     metrics: [
-      { label: "Pre-router speedup", value: "~25–30×" },
-      { label: "Network scale", value: "200K links" },
-      { label: "Realism vs PUMS", value: "70–72%" },
+      { label: "Pre-route speedup", value: "20× · 228× warm" },
+      { label: "Divergence found", value: "up to 96%" },
+      { label: "Release", value: "Apache-2.0 · Zenodo" },
     ],
     repo: "https://github.com/PhanidharAkula/SimForge",
     cover: "/images/projects/simforge.jpg",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     blurb:
       "Production AI study platform that turns a student's own course materials into a personal tutor — grounded chat, auto-generated quizzes and flashcards, spaced-repetition review and hands-free voice mode.",
     description:
-      "Solo-designed, built, deployed and operated studywithlumi.com end-to-end — product, design and engineering — now serving 55+ active students. Students sign in with Google, organize their work into classes, and upload their own materials (PDFs, lecture notes, slides, textbooks); the AI tutor answers strictly from that content rather than the open web. Lumi auto-generates scored practice quizzes with full review, one-click flashcard decks, and a daily spaced-repetition queue that resurfaces cards right before they'd be forgotten, plus hands-free voice study, per-session notes and revisitable history. Underneath: Google OAuth, row-level security on every table, hardened SECURITY DEFINER RPCs, self-service account deletion and an admin analytics panel, with every AI call routed through a Vercel serverless function that verifies each caller's Supabase token so the API key stays entirely server-side.",
+      "Solo-designed, built, deployed and operated studywithlumi.com end-to-end — product, design and engineering — now serving 60+ active students. Students sign in with Google, organize their work into classes, and upload their own materials (PDFs, lecture notes, slides, textbooks); the AI tutor answers strictly from that content rather than the open web. Lumi auto-generates scored practice quizzes with full review, one-click flashcard decks, and a daily spaced-repetition queue that resurfaces cards right before they'd be forgotten, plus hands-free voice study, per-session notes and revisitable history. Underneath: Google OAuth, row-level security on every table, hardened SECURITY DEFINER RPCs, self-service account deletion and an admin analytics panel, with every AI call routed through a Vercel serverless function that verifies each caller's Supabase token, rejects anonymous calls and keeps the API key entirely server-side — with streaming responses and prompt caching on the LLM layer. Android and iOS companion apps are currently in development.",
     stack: [
       "React",
       "TypeScript",
@@ -70,7 +70,7 @@ export const projects: Project[] = [
       "Vercel",
     ],
     metrics: [
-      { label: "Active users", value: "55+" },
+      { label: "Active users", value: "60+" },
       { label: "Status", value: "Live · 2025+" },
       { label: "Surface", value: "studywithlumi.com" },
     ],
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     index: "03",
     title: "CITYSCAPE",
     category: "Systems",
-    year: "Aug 2025 – Present",
+    year: "Aug 2025 – Jun 2026",
     role: "Open-Source Contributor",
     blurb:
       "Merged C++ contributions to an open-source population-synthesis and digital-twin demand framework — fixing classification bugs across five metros and lifting commute-calibration realism via HPC sweeps.",

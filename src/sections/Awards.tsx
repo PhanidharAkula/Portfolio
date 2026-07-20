@@ -43,28 +43,37 @@ export function Awards() {
               <div className="border border-line p-6 flex flex-col gap-4">
                 <span className="mono-mini text-bone/55">/ Publications</span>
                 <ul className="flex flex-col">
-                  {press.map((p) => (
-                    <li key={p.title} className="border-t border-line py-4 group">
-                      <a
-                        href={p.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start justify-between gap-4"
-                        data-cursor="link"
-                      >
+                  {press.map((p) =>
+                    p.href ? (
+                      <li key={p.title} className="border-t border-line py-4 group">
+                        <a
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-start justify-between gap-4"
+                          data-cursor="link"
+                        >
+                          <div className="flex flex-col">
+                            <span className="mono-mini text-plasma">{p.source}</span>
+                            <span className="text-bone group-hover:text-plasma transition-colors">
+                              {p.title}
+                            </span>
+                          </div>
+                          <ArrowUpRight
+                            size={16}
+                            className="text-bone/55 group-hover:text-plasma group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all shrink-0 mt-1"
+                          />
+                        </a>
+                      </li>
+                    ) : (
+                      <li key={p.title} className="border-t border-line py-4">
                         <div className="flex flex-col">
                           <span className="mono-mini text-plasma">{p.source}</span>
-                          <span className="text-bone group-hover:text-plasma transition-colors">
-                            {p.title}
-                          </span>
+                          <span className="text-bone">{p.title}</span>
                         </div>
-                        <ArrowUpRight
-                          size={16}
-                          className="text-bone/55 group-hover:text-plasma group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all shrink-0 mt-1"
-                        />
-                      </a>
-                    </li>
-                  ))}
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
             </Reveal>

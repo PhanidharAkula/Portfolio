@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "./ui/icons";
 import { motion } from "framer-motion";
-import { profile } from "../data/profile";
+import { cvs, profile } from "../data/profile";
 import { MagneticButton } from "./ui/MagneticButton";
 
 export function Footer() {
@@ -56,7 +56,7 @@ export function Footer() {
                 className="display-italic text-bone/85 px-6 md:px-10 inline-flex items-center gap-6 md:gap-10 text-2xl md:text-5xl whitespace-nowrap"
               >
                 <span className="text-plasma">✶</span> Open to full-time · Oct 2026 (OPT + STEM OPT){" "}
-                <span className="text-acid">·</span> Oxford · U.S. · Remote{" "}
+                <span className="text-acid">·</span> Tampa · U.S. · Remote{" "}
                 <span className="text-lavender">✶</span> Always reading papers
               </span>
             ))}
@@ -110,7 +110,7 @@ export function Footer() {
             <span className="mono-mini text-bone/55">/ Colophon</span>
             <p className="text-bone/70 text-sm leading-relaxed">
               Built with React, Framer Motion, React-Three-Fiber, Lenis. Display set in Fraunces, body in Bricolage
-              Grotesque, machine read in JetBrains Mono. Hand-tuned in Oxford, OH.
+              Grotesque, machine read in JetBrains Mono. Hand-tuned in Tampa, FL.
             </p>
           </div>
         </div>
@@ -122,10 +122,19 @@ export function Footer() {
             <span className="hidden md:inline">·</span>
             <span className="text-bone/40">All rights reserved · Forever student.</span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href={profile.cv} download className="chip" data-cursor="link" data-cursor-label="Download">
-              <ArrowUpRight size={12} /> CV.PDF
-            </a>
+          <div className="flex items-center gap-4 flex-wrap">
+            {cvs.map((cv) => (
+              <a
+                key={cv.id}
+                href={cv.file}
+                download
+                className="chip"
+                data-cursor="link"
+                data-cursor-label="Download"
+              >
+                <ArrowUpRight size={12} /> {cv.short}
+              </a>
+            ))}
             <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="chip" data-cursor="link">
               <ArrowUpRight size={12} /> Source
             </a>
