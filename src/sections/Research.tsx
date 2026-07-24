@@ -68,8 +68,18 @@ export function Research() {
                 ))}
               </div>
               <span className="mono-mini text-bone/45 self-start">
-                Defended Jul 2026 <span className="text-plasma">·</span> under review at IEEE
-                T-ITS <span className="text-plasma">·</span> Apache-2.0 · Zenodo DOI
+                Defended Jul 2026 <span className="text-plasma">·</span>{" "}
+                <a
+                  href="http://rave.ohiolink.edu/etdc/view?acc_num=miami1784152758005036"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline text-bone/70"
+                  data-cursor="link"
+                >
+                  published on OhioLINK ETD
+                </a>{" "}
+                <span className="text-plasma">·</span> under review at IEEE T-ITS{" "}
+                <span className="text-plasma">·</span> Apache-2.0 · Zenodo DOI
               </span>
             </div>
           </Reveal>

@@ -131,7 +131,7 @@ export function Hero() {
           >
             <span>/ NOW</span>
             <span className="text-bone">M.S. CS · Miami University · Aug 2026</span>
-            <span className="text-bone/55">Thesis defended · SimForge · Jul 2026</span>
+            <span className="text-bone/55">Thesis published · SimForge · OhioLINK ETD</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

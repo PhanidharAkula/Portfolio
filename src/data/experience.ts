@@ -85,13 +85,13 @@ export const education = [
     org: "Miami University · College of Engineering and Computing",
     period: "2024 - 2026",
     detail:
-      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation\" — defended July 2026 before a committee of three faculty advisors. GPA 3.86 / 4.00. Full scholarship and assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality Assurance, Cryptography.",
+      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation\" — defended July 2026 and published via the OhioLINK Electronic Theses and Dissertations Center. GPA 3.86 / 4.00. Full scholarship and graduate assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality Assurance, Cryptography.",
   },
   {
     degree: "B.Tech. Computer Science",
     org: "Malla Reddy University · Hyderabad, India",
     period: "2020 - 2024",
     detail:
-      "CGPA 8.2 / 10. Two peer-reviewed IJSREM publications (CNN soil classification, LDA topic modeling). Final-year work in deep learning and applied NLP.",
+      "CGPA 8.16 / 10.00. Two peer-reviewed IJSREM publications (CNN soil classification, LDA topic modeling). Final-year work in deep learning and applied NLP.",
   },
 ];

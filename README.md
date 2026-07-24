@@ -6,7 +6,7 @@ Live site: [phanidhar.dev](https://phanidhar.dev)
 
 ## About
 
-This is a single page portfolio that brings together my research, projects, experience and writing in one place. It covers my M.S. thesis work on reproducible traffic simulation (defended July 2026), my open source contributions to digital twin and population synthesis frameworks, the AI study platform I build and operate, and a set of peer reviewed publications and earlier engineering work.
+This is a single page portfolio that brings together my research, projects, experience and writing in one place. It covers my M.S. thesis work on reproducible traffic simulation (defended July 2026, published on OhioLINK ETD), my open source contributions to digital twin and population synthesis frameworks, the AI study platform I build and operate, and a set of peer reviewed publications and earlier engineering work.
 
 ## Highlights
 

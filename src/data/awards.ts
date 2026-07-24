@@ -19,8 +19,9 @@ export const awards: Award[] = [
   },
   {
     year: "2026",
-    title: "M.S. thesis defended · SimForge released under Apache-2.0 with a citable Zenodo DOI",
-    org: "Miami University",
+    title:
+      "M.S. thesis defended & published on OhioLINK ETD · SimForge (Apache-2.0 · Zenodo DOI)",
+    org: "Miami University · OhioLINK",
   },
   {
     year: "2026",
@@ -69,6 +70,12 @@ export const press: { source: string; title: string; href?: string }[] = [
     source: "Frontiers · 2026 · under review",
     title:
       "CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics and Roadway Infrastructure Demand",
+  },
+  {
+    source: "OhioLINK ETD · 2026 · M.S. thesis",
+    title:
+      "SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation",
+    href: "http://rave.ohiolink.edu/etdc/view?acc_num=miami1784152758005036",
   },
   {
     source: "Zenodo · 2026 · software",
