@@ -17,8 +17,40 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "simforge",
+    id: "lumiai",
     index: "01",
+    title: "LUMI·AI",
+    category: "GenAI",
+    year: "Oct 2025 – Present",
+    role: "Solo Founder · Full-Stack Engineer",
+    blurb:
+      "Production AI study platform that turns a student's own course materials into a personal tutor — grounded chat, auto-generated quizzes and flashcards, spaced-repetition review and hands-free voice mode, on web, iOS and Android.",
+    description:
+      "Solo-designed, built, deployed and operated studywithlumi.com end-to-end — product, design and engineering — now serving 220+ active students. Students sign in with Google, organize their work into classes, and upload their own materials (PDFs, lecture notes, slides, textbooks); the AI tutor answers strictly from that content rather than the open web. Lumi auto-generates scored practice quizzes with full review, one-click flashcard decks, and an SM-2 spaced-repetition queue that resurfaces cards right before they'd be forgotten, plus hands-free voice study, per-session notes and revisitable history. The core engineering problem was serving LLM inference safely and affordably at student-scale traffic: every AI call routes through a Vercel serverless function that verifies the caller's Supabase token, rejects anonymous calls and keeps provider keys entirely server-side, with response streaming and prompt caching on the LLM layer. Because students upload their own coursework, authorization lives in the database rather than in application code — row-level security on every user table, Google OAuth, hardened SECURITY DEFINER RPCs, signed storage URLs and self-service account deletion — so a bug in a route handler cannot expose another user's files. Once the web app was stable I extended it to iOS and Android with Capacitor, wrapping the existing TypeScript codebase in native shells and submitting both builds for store review from a single shared repository.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Supabase",
+      "PostgreSQL",
+      "LLMs",
+      "RAG",
+      "Capacitor",
+      "Vercel Serverless",
+    ],
+    metrics: [
+      { label: "Active students", value: "220+" },
+      { label: "Platforms", value: "Web · iOS · Android" },
+      { label: "Surface", value: "studywithlumi.com" },
+    ],
+    href: "https://studywithlumi.com",
+    repo: "https://github.com/phanidharakula/Lumi_AI",
+    cover: "/images/projects/lumiai.jpg",
+    accent: "acid",
+  },
+  {
+    id: "simforge",
+    index: "02",
     title: "SIMFORGE",
     category: "Research",
     year: "Aug 2024 – Jul 2026",
@@ -26,12 +58,12 @@ export const projects: Project[] = [
     blurb:
       "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle — open-sourced under Apache-2.0 with a citable Zenodo DOI.",
     description:
-      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes; deterministic route caching and 16-way parallelism cut shared-route pre-routing from 141.9 hours to 7.1 hours (20× cold-cache, 228× warm). Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at demand tiers up to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons, and deployed across the OSC Pitzer and Cardinal clusters — revealing regime-dependent cross-engine behavior with up to 96% travel-time divergence under saturation. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage. Released under Apache-2.0 with a citable Zenodo DOI (10.5281/zenodo.21385983); the thesis is published via OhioLINK ETD and the paper is under review at IEEE T-ITS.",
+      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes; deterministic route caching and 16-way parallelism cut shared-route pre-routing from 141.9 hours to 7.1 hours (20× cold-cache, 228× warm). Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at demand tiers up to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons, and deployed across the OSC Pitzer and Cardinal clusters — revealing regime-dependent cross-engine behavior with up to 96% travel-time divergence under saturation. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage. Released under Apache-2.0 with a citable Zenodo DOI (10.5281/zenodo.21385983); the thesis is published open-access via OhioLINK ETD and the paper is under review at IEEE T-ITS.",
     stack: [
       "Python",
       "OpenMP",
       "multiprocessing",
-      "GPU-accelerated sim",
+      "Docker · Apptainer",
       "SLURM",
       "OSC HPC",
       "SUMO",
@@ -45,53 +77,25 @@ export const projects: Project[] = [
       { label: "Divergence found", value: "up to 96%" },
       { label: "Release", value: "Apache-2.0 · Zenodo" },
     ],
+    href: "https://doi.org/10.5281/zenodo.21385983",
     repo: "https://github.com/PhanidharAkula/SimForge",
     cover: "/images/projects/simforge.jpg",
     accent: "plasma",
-  },
-  {
-    id: "lumiai",
-    index: "02",
-    title: "LUMI·AI",
-    category: "GenAI",
-    year: "Nov 2025 – Present",
-    role: "Solo Founder · Operator",
-    blurb:
-      "Production AI study platform that turns a student's own course materials into a personal tutor — grounded chat, auto-generated quizzes and flashcards, spaced-repetition review and hands-free voice mode.",
-    description:
-      "Solo-designed, built, deployed and operated studywithlumi.com end-to-end — product, design and engineering — now serving 60+ active students. Students sign in with Google, organize their work into classes, and upload their own materials (PDFs, lecture notes, slides, textbooks); the AI tutor answers strictly from that content rather than the open web. Lumi auto-generates scored practice quizzes with full review, one-click flashcard decks, and a daily spaced-repetition queue that resurfaces cards right before they'd be forgotten, plus hands-free voice study, per-session notes and revisitable history. Underneath: Google OAuth, row-level security on every table, hardened SECURITY DEFINER RPCs, self-service account deletion and an admin analytics panel, with every AI call routed through a Vercel serverless function that verifies each caller's Supabase token, rejects anonymous calls and keeps the API key entirely server-side — with streaming responses and prompt caching on the LLM layer. Android and iOS companion apps are currently in development.",
-    stack: [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Supabase",
-      "PostgreSQL",
-      "LLMs",
-      "Vercel",
-    ],
-    metrics: [
-      { label: "Active users", value: "60+" },
-      { label: "Status", value: "Live · 2025+" },
-      { label: "Surface", value: "studywithlumi.com" },
-    ],
-    href: "https://studywithlumi.com",
-    cover: "/images/projects/lumiai.jpg",
-    accent: "acid",
   },
   {
     id: "cityscape",
     index: "03",
     title: "CITYSCAPE",
     category: "Systems",
-    year: "Aug 2025 – Jun 2026",
+    year: "2026",
     role: "Open-Source Contributor",
     blurb:
       "Merged C++ contributions to an open-source population-synthesis and digital-twin demand framework — fixing classification bugs across five metros and lifting commute-calibration realism via HPC sweeps.",
     description:
-      "Cityscape is an open-source C++ population-synthesis and geospatial demand-generation framework in Dr. DJ Rao's group at Miami University. I authored three merged C++ pull requests (PRs #1–#3) that fixed OSM building-classification and orphan-ring logic across five metros — collapsing synthetic-home ratios (LA ~70% → ~5%) and removing ~1.25M stranded-population artifacts across well over 1M building records. I exposed search-radius CLI flags and ran a 4-city HPC parameter sweep on OSC Pitzer that raised worst-case calibration R² from 0.812 to 0.917. The work feeds the SimForge thesis demand pipeline and underpins a first-author paper — \"CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics\" — under review at Frontiers (2026).",
+      "Cityscape is an open-source C++ population-synthesis and geospatial demand-generation framework in Dr. DJ Rao's group at Miami University. I authored three merged C++ pull requests (PRs #1–#3) that fixed OSM building-classification and orphan-ring logic across five metros — collapsing synthetic-home misassignment in LA from 69.9% to 5.5% and removing ~1.25M stranded-population artifacts across well over 1M building records. I exposed search-radius CLI flags and ran a 4-city, 16-configuration HPC parameter sweep on OSC Pitzer that raised worst-case calibration R² from 0.812 to 0.917. Debugging someone else's production C++ against real-world messy geospatial data was the closest thing to industry work in my research. The work feeds the SimForge thesis demand pipeline and underpins a first-author paper — \"CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics\" — under review at Frontiers (2026).",
     stack: ["C++", "OpenMP", "OSC HPC", "OSM / Geofabrik", "US Census PUMS"],
     metrics: [
-      { label: "Building records", value: "1M+" },
+      { label: "Artifacts removed", value: "~1.25M" },
       { label: "Worst-case R²", value: "0.812 → 0.917" },
       { label: "Paper", value: "Frontiers · in review" },
     ],
@@ -157,16 +161,15 @@ export const projects: Project[] = [
     year: "2023",
     role: "Author",
     blurb:
-      "Deep-learning image classifier for soil-type identification, peer-reviewed in IJSREM (DOI 10.55041/IJSREM23138).",
+      "Deep-learning image classifier for soil-type identification, peer-reviewed in IJSREM (2023).",
     description:
       "A convolutional neural network trained to classify soil images into agriculturally relevant categories. Published as a peer-reviewed paper in the International Journal of Scientific Research in Engineering and Management (IJSREM, 2023). Covers dataset curation, augmentation strategy, architecture choice and confusion-matrix error analysis.",
     stack: ["Python", "PyTorch", "TensorFlow", "CNNs", "OpenCV"],
     metrics: [
       { label: "Venue", value: "IJSREM 2023" },
-      { label: "DOI", value: "23138" },
+      { label: "Focus", value: "CNN · vision" },
       { label: "Status", value: "Peer-reviewed" },
     ],
-    href: "https://doi.org/10.55041/IJSREM23138",
     cover: "/images/projects/soil-cnn.jpg",
     accent: "lavender",
   },

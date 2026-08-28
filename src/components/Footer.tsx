@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "./ui/icons";
 import { motion } from "framer-motion";
-import { cvs, profile } from "../data/profile";
+import { profile } from "../data/profile";
 import { MagneticButton } from "./ui/MagneticButton";
 
 export function Footer() {
@@ -123,18 +123,15 @@ export function Footer() {
             <span className="text-bone/40">All rights reserved · Forever student.</span>
           </div>
           <div className="flex items-center gap-4 flex-wrap">
-            {cvs.map((cv) => (
-              <a
-                key={cv.id}
-                href={cv.file}
-                download
-                className="chip"
-                data-cursor="link"
-                data-cursor-label="Download"
-              >
-                <ArrowUpRight size={12} /> {cv.short}
-              </a>
-            ))}
+            <a
+              href={profile.cv}
+              download
+              className="chip"
+              data-cursor="link"
+              data-cursor-label="Download"
+            >
+              <ArrowUpRight size={12} /> CV · PDF
+            </a>
             <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="chip" data-cursor="link">
               <ArrowUpRight size={12} /> Source
             </a>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { awards, press } from "../data/awards";
+import { awards, certifications, press } from "../data/awards";
 import { Reveal } from "../components/ui/Reveal";
 import { ArrowUpRight } from "lucide-react";
 
@@ -29,7 +29,21 @@ export function Awards() {
                 >
                   <span className="col-span-2 md:col-span-1 mono-mini text-plasma">{a.year}</span>
                   <span className="col-span-10 md:col-span-8 display text-bone text-lg md:text-2xl leading-tight group-hover:text-plasma transition-colors">
-                    {a.title}
+                    {a.href ? (
+                      <a
+                        href={a.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-start gap-2"
+                        data-cursor="link"
+                        data-cursor-label="Open"
+                      >
+                        {a.title}
+                        <ArrowUpRight size={16} className="mt-1.5 shrink-0 text-bone/45 group-hover:text-plasma transition-colors" />
+                      </a>
+                    ) : (
+                      a.title
+                    )}
                   </span>
                   <span className="col-span-12 md:col-span-3 mono-mini text-bone/55 md:text-right">
                     {a.org}
@@ -38,7 +52,7 @@ export function Awards() {
               ))}
             </ul>
           </div>
-          <div className="col-span-12 lg:col-span-5">
+          <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
             <Reveal>
               <div className="border border-line p-6 flex flex-col gap-4">
                 <span className="mono-mini text-bone/55">/ Publications</span>
@@ -74,6 +88,53 @@ export function Awards() {
                       </li>
                     )
                   )}
+                </ul>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="border border-line p-6 flex flex-col gap-4">
+                <span className="mono-mini text-bone/55">/ Certifications</span>
+                <ul className="flex flex-col">
+                  {certifications.map((c) => {
+                    const body = (
+                      <>
+                        <div className="flex flex-col">
+                          <span className="mono-mini text-plasma">
+                            {c.issuer} · {c.year}
+                          </span>
+                          <span className="text-bone group-hover:text-plasma transition-colors">
+                            {c.name}
+                          </span>
+                        </div>
+                        {c.href && (
+                          <ArrowUpRight
+                            size={16}
+                            className="text-bone/55 group-hover:text-plasma group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all shrink-0 mt-1"
+                          />
+                        )}
+                      </>
+                    );
+
+                    return (
+                      <li key={c.name} className="border-t border-line py-4 group">
+                        {c.href ? (
+                          <a
+                            href={c.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start justify-between gap-4"
+                            data-cursor="link"
+                            data-cursor-label="Verify"
+                          >
+                            {body}
+                          </a>
+                        ) : (
+                          <div className="flex items-start justify-between gap-4">{body}</div>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </Reveal>

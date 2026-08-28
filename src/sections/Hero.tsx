@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, Download } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { HeroScene } from "../components/three/HeroScene";
 // import { SceneWaves as HeroScene } from "../components/three/scenes/SceneWaves";
@@ -11,7 +11,6 @@ import { HeroScene } from "../components/three/HeroScene";
 // import { SceneSolarSystem as HeroScene } from "../components/three/scenes/SceneSolarSystem";
 import { profile } from "../data/profile";
 import { MagneticButton } from "../components/ui/MagneticButton";
-import { CVMenu } from "../components/ui/CVMenu";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -105,7 +104,7 @@ export function Hero() {
               </svg>
             </span>
             <span className="display-italic text-bone/40 text-[0.7em] md:text-[1em]">
-              researcher
+              engineer
             </span>
           </motion.span>
         </h1>
@@ -119,8 +118,8 @@ export function Hero() {
             className="col-span-12 lg:col-span-4"
           >
             <p className="text-bone/80 text-base md:text-lg leading-relaxed">
-              {profile.tagline} Reproducible HPC simulators by morning, production AI products by night,
-              where the model meets the metal.
+              {profile.tagline} Production AI in students' hands by day, reproducible HPC
+              benchmarks on the cluster by night — where the model meets the metal.
             </p>
           </motion.div>
           <motion.div
@@ -131,7 +130,8 @@ export function Hero() {
           >
             <span>/ NOW</span>
             <span className="text-bone">M.S. CS · Miami University · Aug 2026</span>
-            <span className="text-bone/55">Thesis published · SimForge · OhioLINK ETD</span>
+            <span className="text-bone/55">LumiAI · 220+ students · web · iOS · Android</span>
+            <span className="text-bone/55">SimForge thesis · published on OhioLINK ETD</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -148,7 +148,15 @@ export function Hero() {
               <span>Selected Work</span>
               <ArrowDownRight size={14} />
             </MagneticButton>
-            <CVMenu className="btn-outline" label="CV.PDF" direction="up" align="right" />
+            <MagneticButton
+              href={profile.cv}
+              download
+              className="btn-outline"
+              cursor="link"
+              cursorLabel="Download"
+            >
+              <Download size={14} /> CV.PDF
+            </MagneticButton>
           </motion.div>
         </div>
 

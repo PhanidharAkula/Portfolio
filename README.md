@@ -1,20 +1,20 @@
 # Portfolio
 
-Personal portfolio of Phanidhar Akula, a researcher, engineer and builder working at the seam of urban simulation, HPC and AI.
+Personal portfolio of Phanidhar Akula, a full-stack software engineer and M.S. Computer Science researcher working at the seam of production AI, full-stack systems and large-scale urban simulation.
 
 Live site: [phanidhar.dev](https://phanidhar.dev)
 
 ## About
 
-This is a single page portfolio that brings together my research, projects, experience and writing in one place. It covers my M.S. thesis work on reproducible traffic simulation (defended July 2026, published on OhioLINK ETD), my open source contributions to digital twin and population synthesis frameworks, the AI study platform I build and operate, and a set of peer reviewed publications and earlier engineering work.
+This is a single page portfolio that brings together my work, research, projects and experience in one place. It covers the AI study platform I build and operate, my M.S. thesis work on reproducible traffic simulation (defended July 2026, published on OhioLINK ETD), my open source contributions to digital twin and population synthesis frameworks, and a set of peer reviewed publications and earlier engineering work.
 
 ## Highlights
 
+- Lumi AI, a production AI tutoring platform serving 220+ active students across web, iOS and Android
 - SimForge, a reproducible cross simulator benchmarking framework for urban traffic, released under Apache-2.0 with a citable Zenodo DOI and under review at IEEE T-ITS
-- Cityscape, an open source population synthesis and geospatial demand framework, under review at Frontiers
-- Lumi AI, a production AI study platform live with 60+ student users
+- Cityscape, an open source population synthesis and geospatial demand framework, three merged C++ pull requests, under review at Frontiers
 - Peer reviewed publications in deep learning and topic modeling
-- Two focused resumes available for download: Simulation & Digital Twins, and AI & Full-Stack Engineering
+- One page resume available for download
 
 ## Tech Stack
 

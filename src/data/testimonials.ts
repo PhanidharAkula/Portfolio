@@ -24,7 +24,7 @@ export const testimonials: Testimonial[] = [
       "Phanidhar was reliable in delivering production-ready features across both frontend and backend. He communicated clearly, adapted quickly to feedback, and wrote code that was easy for the team to maintain and build on.",
     name: "Rakesh Reddy",
     role: "Founder & CEO",
-    org: "Pathfinders Overseas Education",
+    org: "Smart Pathfinders Overseas Education",
     initials: "RR",
   },
 ];

@@ -6,10 +6,17 @@ import { projects, type Project } from "../data/projects";
 import { Tilt } from "../components/ui/Tilt";
 
 const SECTION_NUM = "04";
-const FILTERS = ["All", "Research", "GenAI", "Full-Stack", "Tooling"] as const;
+
+// Derived from the data so a filter can never point at an empty set, and a new
+// project category shows up as a pill without a second edit here.
+type Filter = "All" | Project["category"];
+const FILTERS: Filter[] = [
+  "All",
+  ...Array.from(new Set(projects.map((p) => p.category))),
+];
 
 export function Projects() {
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
+  const [filter, setFilter] = useState<Filter>("All");
   const [active, setActive] = useState<Project | null>(null);
 
   const filtered = useMemo(
@@ -34,8 +41,8 @@ export function Projects() {
         <div className="grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-7 lg:col-span-8">
             <p className="text-bone/70 max-w-2xl">
-              Seven artifacts spanning HPC research, generative AI, full-stack and open-source tooling.
-              Each one tackled a constraint that didn't have a textbook answer.
+              Seven artifacts spanning production AI, HPC research, systems work and open-source
+              tooling. Each one tackled a constraint that didn't have a textbook answer.
             </p>
           </div>
           <div className="col-span-12 md:col-span-5 lg:col-span-4 flex flex-wrap gap-2 md:justify-end">

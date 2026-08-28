@@ -40,7 +40,7 @@ export function Manifesto() {
           className="mt-12 max-w-2xl text-bone/70 leading-relaxed text-lg md:text-xl"
         >
           The product is the experiment is the paper is the demo. Every project is an excuse to
-          read one more paper, write one more line of CUDA, throw away one more abstraction that
+          read one more paper, write one more benchmark, throw away one more abstraction that
           stopped earning its keep.
         </motion.div>
       </div>

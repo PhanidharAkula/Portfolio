@@ -2,6 +2,7 @@ export type Award = {
   year: string;
   title: string;
   org: string;
+  href?: string;
 };
 
 export const awards: Award[] = [
@@ -22,41 +23,86 @@ export const awards: Award[] = [
     title:
       "M.S. thesis defended & published on OhioLINK ETD · SimForge (Apache-2.0 · Zenodo DOI)",
     org: "Miami University · OhioLINK",
+    href: "http://rave.ohiolink.edu/etdc/view?acc_num=miami1784152758005036",
   },
   {
     year: "2026",
-    title: "Certificate of Appreciation · Graduate School",
+    title: "Certificate of Appreciation for Graduate Student Service",
+    org: "The Graduate School · Miami University",
+  },
+  {
+    year: "2025",
+    title:
+      "President · Graduate Students of Color Association (110+ members)",
     org: "Miami University",
   },
   {
     year: "2025",
-    title: "Elected President · Graduate Students of Color Association (104 members)",
-    org: "Miami University",
-  },
-  {
-    year: "2025",
-    title: "Elected Member · Graduate Student Council Board",
+    title:
+      "Elected Graduate Student Representative · University Graduate Council",
     org: "Miami University",
   },
   {
     year: "2024",
-    title: "Full scholarship + assistantship · M.S. Computer Science",
+    title:
+      "Graduate assistantship · full tuition scholarship and stipend · M.S. Computer Science",
     org: "Miami University",
   },
   {
     year: "2023",
     title: "Peer-reviewed publication · Topic Modelling of Web Pages with LDA",
     org: "IJSREM · DOI 27350",
+    href: "https://doi.org/10.55041/IJSREM27350",
   },
   {
     year: "2023",
     title: "Peer-reviewed publication · Soil Image Classification with CNNs",
-    org: "IJSREM · DOI 23138",
+    org: "IJSREM · 2023",
+  },
+];
+
+export type Certification = {
+  name: string;
+  issuer: string;
+  year: string;
+  href?: string;
+};
+
+export const certifications: Certification[] = [
+  {
+    name: "Humans as Subjects · IRB Basic Course",
+    issuer: "CITI Program · ID 72099053",
+    year: "2025",
+    href: "https://www.citiprogram.org/verify/?weda97f46-b8a7-4212-968b-5c4e65bd473a-72099053",
   },
   {
-    year: "2022 - 2025",
-    title: "10+ technical certifications · AWS Cloud Foundations · Applied ML & AI · Software Engineering",
-    org: "AICTE · Coursera · NPTEL · Forage · AWS",
+    name: "AWS Academy Graduate · Machine Learning Foundations",
+    issuer: "Amazon Web Services",
+    year: "2023",
+    href: "https://www.credly.com/go/QF5GMOsD",
+  },
+  {
+    name: "Deep Learning",
+    issuer: "IIT Madras · NPTEL",
+    year: "2023",
+    href: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL23CS24S4375869704006060",
+  },
+  {
+    name: "AWS Academy Graduate · Cloud Foundations",
+    issuer: "Amazon Web Services",
+    year: "2022",
+    href: "https://www.credly.com/go/n896CgEW",
+  },
+  {
+    name: "Scaling with Google Cloud Operations",
+    issuer: "Google Cloud · Coursera",
+    year: "2022",
+    href: "https://coursera.org/verify/TSFHFBTSZBZL",
+  },
+  {
+    name: "Front-End Web Development with React",
+    issuer: "HKUST · Coursera",
+    year: "2022",
   },
 ];
 
@@ -90,6 +136,5 @@ export const press: { source: string; title: string; href?: string }[] = [
   {
     source: "IJSREM · 2023",
     title: "Soil Image Classification using Deep Learning",
-    href: "https://doi.org/10.55041/IJSREM23138",
   },
 ];

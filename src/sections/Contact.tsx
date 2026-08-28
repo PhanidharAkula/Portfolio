@@ -1,19 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, type FormEvent } from "react";
-import { ArrowUpRight, Mail, Send } from "lucide-react";
+import { ArrowUpRight, Download, Mail, Send } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { profile } from "../data/profile";
 import { Reveal } from "../components/ui/Reveal";
 import { MagneticButton } from "../components/ui/MagneticButton";
-import { CVMenu } from "../components/ui/CVMenu";
 
 const SECTION_NUM = "07";
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
 
 const PROJECT_TYPES = [
-  "Research collaboration",
+  "Full-time role",
   "Full-stack engineering",
   "Generative-AI build",
+  "Research collaboration",
   "Mentoring / talk",
   "Just to say hi",
 ];
@@ -101,10 +101,10 @@ export function Contact() {
           {/* Channels */}
           <Reveal className="col-span-12 lg:col-span-5 flex flex-col gap-6">
             <p className="text-bone/80 leading-relaxed text-lg max-w-md">
-              I'm looking for full-time simulation, AI and full-stack engineering roles
-              starting Oct 2026 (OPT pending · STEM OPT eligible) and select side
-              collaborations. Email is the fastest path. I usually reply within a day.
-              Two CVs below — grab the one that fits your role.
+              I'm looking for full-time full-stack, AI and systems engineering roles
+              starting Oct 2026 (OPT pending · STEM OPT eligible), plus select research
+              collaborations. Email is the fastest path — I usually reply within a day.
+              The CV is one click below.
             </p>
             <div className="flex flex-col gap-3">
               <ContactLine
@@ -127,7 +127,15 @@ export function Contact() {
               />
             </div>
             <div className="flex flex-wrap items-center gap-3 mt-2">
-              <CVMenu className="btn-solid" label="Download CV" direction="down" align="left" />
+              <MagneticButton
+                href={profile.cv}
+                download
+                className="btn-solid"
+                cursor="link"
+                cursorLabel="Download"
+              >
+                <Download size={14} /> Download CV
+              </MagneticButton>
               <MagneticButton
                 href={`mailto:${profile.email}`}
                 className="btn-outline"
