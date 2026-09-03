@@ -18,10 +18,10 @@ export const experiences: Experience[] = [
     period: "Oct 2025 - Present",
     location: "Remote",
     bullets: [
-      "Built and shipped a production React/TypeScript AI tutoring platform used by 220+ active students, generating document-grounded chat, quizzes, flashcards, spaced repetition and voice tutoring from a student's own uploaded course material.",
-      "Engineered a serverless LLM inference layer on Vercel with token-verified requests, response streaming and prompt caching — blocking 100% of anonymous inference calls and keeping provider keys server-side, where a single leaked key would mean unbounded charges.",
-      "Architected the data layer on PostgreSQL with row-level security across every user table, Google OAuth, hardened SECURITY DEFINER RPCs and signed storage URLs, so authorization lives in the database and a bug in a route handler cannot expose another user's files.",
-      "Extended the platform to iOS and Android with Capacitor, wrapping the existing TypeScript codebase in native shells and submitting both builds for store review from a single shared repository — one codebase across three platforms, with no platform-specific business logic.",
+      "Built and shipped a production React/TypeScript AI tutoring platform serving 220+ students and 3K+ AI interactions, spanning document-grounded chat, quizzes, flashcards, spaced repetition and voice tutoring from a student's own uploaded course material.",
+      "Engineered a serverless LLM inference layer on Vercel with token-verified requests, response streaming and prompt caching — blocking 100% of anonymous inference calls and serving 87% of input tokens from cache, with provider keys kept server-side where a single leak would mean unbounded charges.",
+      "Architected the data layer on PostgreSQL with database-enforced row-level security across all 13 user tables, Google OAuth, hardened SECURITY DEFINER RPCs and signed storage, so authorization lives in the database and no query path can return another user's data.",
+      "Extended the platform to iOS and Android with Capacitor, reusing 95% of the existing TypeScript codebase in native shells with platform-specific auth and storage, and submitting both builds for store review from a single shared repository.",
     ],
     tags: ["React", "TypeScript", "LLMs", "Supabase", "PostgreSQL", "Capacitor", "Vercel"],
   },
@@ -33,10 +33,10 @@ export const experiences: Experience[] = [
     period: "Aug 2024 - Jul 2026",
     location: "Oxford, OH",
     bullets: [
-      "Designed a Python-driven 4-city, 16-configuration HPC study on the OSC Pitzer cluster, cutting LA synthetic-home misassignment from 69.9% to 5.5% and lifting worst-case calibration R² from 0.812 to 0.917 by isolating which pipeline stages were introducing the error.",
-      "Diagnosed and fixed OSM building-classification defects in Cityscape's open-source C++ pipeline across 5 metros, shipping 3 merged pull requests that removed ~1.25M stranded-population artifacts from model output.",
-      "Developed SimForge as my M.S. thesis — an open-source Python framework unifying 3 traffic simulators (SUMO, MATSim, DTALite) behind one canonical data pipeline with containerized, deterministic execution.",
-      "Accelerated shared-route pre-routing from 141.9 hours to 7.1 through deterministic route caching and 16-way parallelism, a 20× speedup, then benchmarked 3 cities at up to 500K trips per seeded run to confirm results stayed reproducible across seeds.",
+      "Developed SimForge as my M.S. thesis — an open-source Python framework that benchmarks 3 traffic simulators (SUMO, MATSim, DTALite) under identical conditions from one canonical input, with Docker, CI and 668 pytest tests so every run reproduces exactly.",
+      "Optimized trip routing — one travel path per simulated resident — from 142 hours to 7, a 20× speedup, by caching each route once in Python and parallelizing across 16 cores of a supercomputer node, then benchmarked 3 cities at up to 500K trips per seeded run.",
+      "Debugged Cityscape, an open-source C++ digital-twin city simulator, tracing a data-loading bug to a single filter condition; 3 merged PRs restored 493K buildings and cut invented-home placements from 70% to 6%.",
+      "Designed a 16-configuration Python study across 5 cities on the OSC Pitzer cluster, tuning how far the router searches for routes and improving worst-case commute-time accuracy (R²) from 0.812 to 0.917.",
       "Two first-author manuscripts from this work are under review at IEEE Transactions on Intelligent Transportation Systems and Frontiers.",
     ],
     tags: ["Python", "C++", "OpenMP", "SLURM", "OSC HPC", "Docker", "PUMS"],
@@ -51,13 +51,13 @@ export const experiences: Experience[] = [
     bullets: [
       "Collaborated with a team of 3 developers to build a private client portal in React and Redux, giving 180+ enrolled students one place to track applications, upload documents and reach their counselors — work that had previously lived in email and spreadsheets.",
       "Modeled application state so a student could see every stage of their process, current status and what was still outstanding, making multi-step workflows that ran for months predictable.",
-      "Implemented Python/MySQL REST APIs and relational data models behind role-based access control, so each student saw only their own records while staff managed the full caseload from one dashboard.",
+      "Implemented Python/MySQL REST APIs and relational data models behind role-based access control across 3 user roles, so each student saw only their own records while staff managed the full caseload from one dashboard.",
     ],
     tags: ["React", "Redux", "Python", "FastAPI", "MySQL", "REST APIs"],
   },
   {
     id: "exp-freelance",
-    role: "Software Developer · Freelance",
+    role: "Full-Stack Developer · Freelance",
     org: "E-commerce & fitness startup clients",
     type: "Industry",
     period: "May 2023 - Dec 2023",
@@ -125,6 +125,6 @@ export const education = [
     org: "Malla Reddy University · Hyderabad, India",
     period: "2020 - 2024",
     detail:
-      "CGPA 8.16 / 10.00. Two peer-reviewed IJSREM publications (CNN soil classification, LDA topic modeling). Coursework: Data Structures & Algorithms, Object-Oriented Programming, Artificial Intelligence, Full-Stack Web Development, Database Management Systems, Computer Networks, Operating Systems.",
+      "CGPA 8.16 / 10.00. Two peer-reviewed IJSREM publications (CNN soil classification, LDA topic modeling). Coursework: Data Structures & Algorithms, Object-Oriented Programming, Operating Systems.",
   },
 ];
