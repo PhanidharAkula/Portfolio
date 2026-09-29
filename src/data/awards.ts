@@ -15,8 +15,8 @@ export const awards: Award[] = [
   {
     year: "2026",
     title:
-      "First-author paper under review · CITYSCAPE: A Digital Twin Framework for Work-Commute Dynamics",
-    org: "Frontiers · with Dr. DJ Rao",
+      "First-author paper · revision submitted · CITYSCAPE: A Digital Twin Framework for Work-Commute Dynamics",
+    org: "Frontiers · with Dr. DJ Rao et al.",
   },
   {
     year: "2026",
@@ -106,26 +106,30 @@ export const certifications: Certification[] = [
   },
 ];
 
-export const press: { source: string; title: string; href?: string }[] = [
+export const press: { source: string; title: string; authors?: string; href?: string }[] = [
   {
     source: "IEEE T-ITS · 2026 · under review",
     title:
       "Attributable Cross-Simulator Benchmarking for Urban Traffic Simulation: Reproducibility, Consistency, and Regime-Dependent Divergence",
+    authors: "Akula, P., Rao, D. M.",
   },
   {
-    source: "Frontiers · 2026 · under review",
+    source: "Frontiers · 2026 · revision submitted",
     title:
       "CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics and Roadway Infrastructure Demand",
+    authors: "Akula, P., et al.",
   },
   {
     source: "OhioLINK ETD · 2026 · M.S. thesis",
     title:
       "SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation",
+    authors: "Akula, P.",
     href: "http://rave.ohiolink.edu/etdc/view?acc_num=miami1784152758005036",
   },
   {
     source: "Zenodo · 2026 · software",
     title: "SimForge · reproducible cross-simulator benchmarking framework (Apache-2.0)",
+    authors: "Akula, P.",
     href: "https://doi.org/10.5281/zenodo.21385983",
   },
   {

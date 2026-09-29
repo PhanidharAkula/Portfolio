@@ -92,12 +92,12 @@ export const projects: Project[] = [
     blurb:
       "Merged C++ contributions to an open-source population-synthesis and digital-twin demand framework — tracing a data-loading bug to a single filter condition, restoring 493K buildings, and lifting commute-calibration realism via HPC sweeps.",
     description:
-      "Cityscape is an open-source C++ population-synthesis and geospatial demand-generation framework in Dr. DJ Rao's group at Miami University. I authored three merged C++ pull requests (PRs #1–#3) that traced a data-loading bug to a single filter condition and fixed OSM building-classification and orphan-ring logic — restoring 493K buildings, cutting invented-home placements from 70% to 6%, and removing ~1.25M stranded-population artifacts across well over 1M building records. I exposed search-radius CLI flags and ran a 16-configuration parameter sweep across five cities on OSC Pitzer that raised worst-case commute-time accuracy (R²) from 0.812 to 0.917. Debugging someone else's production C++ against real-world messy geospatial data was the closest thing to industry work in my research. The work feeds the SimForge thesis demand pipeline and underpins a first-author paper — \"CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics\" — under review at Frontiers (2026).",
+      "Cityscape is an open-source C++ population-synthesis and geospatial demand-generation framework in Dr. DJ Rao's group at Miami University. I authored three merged C++ pull requests (PRs #1–#3) that traced a data-loading bug to a single filter condition and fixed OSM building-classification and orphan-ring logic — restoring 493K buildings, cutting invented-home placements from 70% to 6%, and removing ~1.25M stranded-population artifacts across well over 1M building records. I exposed search-radius CLI flags and ran a 16-configuration parameter sweep across five cities on OSC Pitzer that raised worst-case commute-time accuracy (R²) from 0.812 to 0.917. Debugging someone else's production C++ against real-world messy geospatial data was the closest thing to industry work in my research. The work feeds the SimForge thesis demand pipeline and underpins a first-author paper — \"CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics\" — with a revision submitted to Frontiers (2026).",
     stack: ["C++", "OpenMP", "OSC HPC", "OSM / Geofabrik", "US Census PUMS"],
     metrics: [
       { label: "Buildings restored", value: "493K" },
       { label: "Worst-case R²", value: "0.812 → 0.917" },
-      { label: "Paper", value: "Frontiers · in review" },
+      { label: "Frontiers paper", value: "Revision submitted" },
     ],
     repo: "https://github.com/raodj/cityscape/pulls?q=author%3APhanidharAkula",
     cover: "/images/projects/cityscape.jpg",

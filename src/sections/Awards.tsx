@@ -72,6 +72,9 @@ export function Awards() {
                             <span className="text-bone group-hover:text-plasma transition-colors">
                               {p.title}
                             </span>
+                            {p.authors && (
+                              <span className="mt-1 mono text-[11px] text-bone/45">{p.authors}</span>
+                            )}
                           </div>
                           <ArrowUpRight
                             size={16}
@@ -84,6 +87,9 @@ export function Awards() {
                         <div className="flex flex-col">
                           <span className="mono-mini text-plasma">{p.source}</span>
                           <span className="text-bone">{p.title}</span>
+                          {p.authors && (
+                            <span className="mt-1 mono text-[11px] text-bone/45">{p.authors}</span>
+                          )}
                         </div>
                       </li>
                     )

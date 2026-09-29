@@ -12,7 +12,7 @@ This is a single page portfolio that brings together my work, research, projects
 
 - Lumi AI, a production AI tutoring platform serving 220+ active students across web, iOS and Android
 - SimForge, a reproducible cross simulator benchmarking framework for urban traffic, released under Apache-2.0 with a citable Zenodo DOI and under review at IEEE T-ITS
-- Cityscape, an open source population synthesis and geospatial demand framework, three merged C++ pull requests, under review at Frontiers
+- Cityscape, an open source population synthesis and geospatial demand framework, three merged C++ pull requests, first-author paper with a revision submitted at Frontiers
 - Peer reviewed publications in deep learning and topic modeling
 - One page resume available for download
 
