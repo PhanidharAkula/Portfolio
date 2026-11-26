@@ -1,34 +1,401 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0A0908" />
-    <meta name="description" content="Phanidhar Akula — full-stack software engineer and M.S. Computer Science researcher at Miami University. Builder of LumiAI, a production AI tutoring platform used by 220+ students on web, iOS and Android, and author of SimForge, an open-source cross-simulator benchmarking framework published on OhioLINK and Zenodo." />
-    <meta property="og:title" content="Portfolio - Phanidhar Akula" />
-    <meta property="og:description" content="Full-stack engineer and simulation researcher. LumiAI, SimForge, and the work in between." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://phanidhar.dev/" />
-    <meta property="og:site_name" content="Portfolio - Phanidhar Akula" />
-    <meta property="og:image" content="https://phanidhar.dev/og.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Portfolio - Phanidhar Akula" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portfolio - Phanidhar Akula" />
-    <meta name="twitter:description" content="Full-stack engineer and simulation researcher. LumiAI, SimForge, and the work in between." />
-    <meta name="twitter:image" content="https://phanidhar.dev/og.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <title>Portfolio - Phanidhar Akula</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Phanidhar Akula, software engineer</title>
+  <meta name="description" content="Software engineer in Tampa, Florida. I built Lumi AI, a tutor 220+ students study with, and cut a 142-hour simulation down to 7.">
+  <meta name="author" content="Phanidhar Akula">
+  <link rel="canonical" href="https://www.phanidhar.dev/">
+
+  <meta name="color-scheme" content="only light">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.phanidhar.dev/">
+  <meta property="og:site_name" content="Phanidhar Akula">
+  <meta property="og:title" content="Phanidhar Akula, software engineer">
+  <meta property="og:description" content="I built an AI tutor that 220 students study with, made a 142-hour simulation finish in 7, and fixed a bug that was silently dropping 500,000 records.">
+  <meta property="og:image" content="https://www.phanidhar.dev/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Phanidhar Akula, software engineer">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- The "js" class holds highlights, bars and the photo back so the script
+       can draw them in. If the script never arrives, the class comes off again
+       and the page shows everything the plain way. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+
+      // The page always opens at the top: on a first visit, on a refresh, and
+      // on coming back to the tab. Three things make sure of it:
+      // 1. the browser is told not to put the page back where it was;
+      // 2. the address never keeps a "#section" (any that arrives is dropped
+      //    here, and clicking a section link does not add one, see main.js);
+      // 3. for the first moments, anything that still tries to move the page
+      //    is undone before it can be seen, until the reader scrolls, taps
+      //    or types.
+      try {
+        history.scrollRestoration = "manual";
+
+        if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+
+        var inputs = ["wheel", "touchstart", "pointerdown", "mousedown", "keydown", "click"];
+        var hold = function () {
+          if (!window.scrollX && !window.scrollY) return;
+          try {
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          } catch (error) {
+            window.scrollTo(0, 0);
+          }
+        };
+        var release = function () {
+          removeEventListener("scroll", hold);
+          inputs.forEach(function (type) { removeEventListener(type, release, true); });
+        };
+
+        addEventListener("scroll", hold);
+        inputs.forEach(function (type) { addEventListener(type, release, { capture: true, passive: true }); });
+        addEventListener("load", function () {
+          hold();
+          setTimeout(release, 1200);
+        });
+      } catch (error) {}
+    })();
+  </script>
+  <script src="main.js" defer onerror="document.documentElement.classList.remove('js')"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Phanidhar Akula",
+    "jobTitle": "Software engineer",
+    "url": "https://www.phanidhar.dev/",
+    "email": "mailto:phanidharakula@gmail.com",
+    "image": "https://www.phanidhar.dev/assets/portrait-800.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL", "addressCountry": "US" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Miami University" },
+      { "@type": "CollegeOrUniversity", "name": "Malla Reddy University" }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/phanidharakula",
+      "https://github.com/PhanidharAkula"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#work">Skip to the work</a>
+
+  <!-- Nothing on the page has the id "top", on purpose. A link to #top with no
+       such element means "the top of the document" to every browser. Giving
+       this bar that id breaks it: the bar is stuck to the top of the window,
+       so the browser thinks it has already arrived. -->
+  <header class="top">
+    <div class="wrap top__inner">
+      <a class="top__name" href="#top">Phanidhar Akula</a>
+      <!-- The spare links sit beside the name, where there is room for them
+           to come and go without moving anything else in the bar. -->
+      <nav class="top__nav" aria-label="Quick links">
+        <a href="mailto:phanidharakula@gmail.com">Email</a>
+        <a href="assets/Phanidhar_Akula_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+      <!-- data-to names the part of the page (data-place) each link stands for. -->
+      <nav class="top__places" aria-label="Sections">
+        <a href="#lumi" data-to="work">Work</a>
+        <a href="#experience" data-to="experience">Experience</a>
+        <a href="#skills" data-to="skills">Skills</a>
+        <a href="#contact" data-to="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" aria-labelledby="hello">
+      <h1 class="sr-only" id="hello">Phanidhar Akula, software engineer</h1>
+
+      <figure class="me">
+        <!-- A cutout: the photo's background is removed and the shoulders fade
+             out, both baked into the image, so it sits on the page with no box. -->
+        <picture>
+          <source type="image/avif" srcset="assets/portrait-cut-400.avif 400w, assets/portrait-cut-800.avif 800w" sizes="(min-width: 56rem) 25rem, 6rem">
+          <img src="assets/portrait-cut-800.webp" srcset="assets/portrait-cut-400.webp 400w, assets/portrait-cut-800.webp 800w" sizes="(min-width: 56rem) 25rem, 6rem" width="800" height="1000" alt="Portrait of Phanidhar Akula" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Short on time? Read <mark>the highlights</mark>.</figcaption>
+      </figure>
+
+      <div class="hero__text">
+        <!-- Each claim is marked in its project's color and jumps to the proof. -->
+        <p class="statement">I’m Phanidhar, a <mark>software engineer</mark>. I built an AI tutor that <a class="jump c-lumi" href="#lumi"><mark>220 students</mark></a> study with, made a <a class="jump c-simforge" href="#simforge"><mark><span class="nb">142-hour</span> simulation finish in 7</mark></a>, and fixed a bug that was silently dropping <a class="jump c-cityscape" href="#cityscape"><mark>500,000 records</mark></a>.</p>
+
+        <p class="intro">M.S. in Computer Science from Miami University, 2026. I live in Tampa, Florida, and I’m <mark>looking for a <span class="nb">full-time</span> role</mark>.</p>
+
+        <ul class="actions">
+          <li><a class="btn btn--ink" href="assets/Phanidhar_Akula_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+          <li><a href="mailto:phanidharakula@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/phanidharakula" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/PhanidharAkula" target="_blank" rel="me noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div id="work" data-place="work">
+
+      <section class="wrap scene c-lumi" aria-labelledby="lumi">
+        <div class="scene__text">
+          <h2 id="lumi">Lumi AI</h2>
+          <p>An AI tutor for students. You upload your notes and slides, and it answers from them instead of the open web. It writes your quizzes and flashcards too. 220+ students use it, and I <mark>built all of it myself</mark>.</p>
+          <p class="quiet">React, TypeScript, PostgreSQL, Supabase, Vercel</p>
+          <ul class="links">
+            <li><a href="https://www.studywithlumi.com/" target="_blank" rel="noopener">studywithlumi.com</a></li>
+            <li><a href="https://github.com/PhanidharAkula/Lumi_AI" target="_blank" rel="noopener">Source on GitHub</a></li>
+          </ul>
+        </div>
+
+        <figure class="fig ask" data-figure="ask">
+          <p class="fig__ask">Ask these notes a question</p>
+          <div class="fig__controls" role="group" aria-label="Questions to ask">
+            <button class="btn" type="button" aria-pressed="false" data-answer="ans-who">Who ran the experiment?</button>
+            <button class="btn" type="button" aria-pressed="false" data-answer="ans-fast">How fast did he forget?</button>
+            <button class="btn" type="button" aria-pressed="false" data-answer="ans-when">When should I review?</button>
+          </div>
+          <p class="ask__notes">Psych 101, week 4. In 1885 <span class="swipe" id="ans-who">Hermann Ebbinghaus</span> memorized lists of nonsense syllables, then tested how much he kept. He forgot <span class="swipe" id="ans-fast">about half within an hour</span> and three quarters within a week. Reviewing <span class="swipe" id="ans-when">just before you forget</span> slows that down, and each review buys more time before the next.</p>
+          <p class="sr-only" aria-live="polite" data-ask-live></p>
+          <figcaption>Lumi answers from the student’s own material, nothing else.</figcaption>
+        </figure>
+      </section>
+
+      <section class="wrap scene c-simforge" aria-labelledby="simforge">
+        <div class="scene__text">
+          <h2 id="simforge">SimForge</h2>
+          <p>It hands the same city and the same trips to three traffic simulators, then compares what comes out. One step took 142 hours. I got it down to 7 by caching routes and running on 16 supercomputer cores. <mark>668 automated tests</mark> and a container rebuilt on every release keep every run repeatable.</p>
+          <p class="quiet">Python, Docker, GitHub Actions, SLURM, Ohio Supercomputer Center. Paper under review at <cite>IEEE T-ITS</cite>.</p>
+          <ul class="links">
+            <li><a href="https://github.com/PhanidharAkula/SimForge" target="_blank" rel="noopener">Source on GitHub</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.21385983" target="_blank" rel="noopener">DOI</a></li>
+          </ul>
+        </div>
+
+        <figure class="fig race" data-figure="race">
+          <p class="sr-only">Before: 141.9 hours. After: 7.1 hours.</p>
+          <div class="race__row" data-hours="141.9" aria-hidden="true">
+            <span class="race__label">Before</span>
+            <span class="race__time"><span class="num" data-num>141.9</span> hours</span>
+            <span class="race__track"><i class="race__line"></i></span>
+          </div>
+          <div class="race__row race__row--after" data-hours="7.1" aria-hidden="true">
+            <span class="race__label">After</span>
+            <span class="race__time"><span class="num" data-num>7.1</span> hours</span>
+            <span class="race__track"><i class="race__line"></i></span>
+          </div>
+          <div class="fig__foot">
+            <figcaption><span>Drawn to scale.</span> <span>One second here is ten hours on the cluster.</span></figcaption>
+            <button class="btn" type="button" data-race-run>Run it again</button>
+          </div>
+        </figure>
+      </section>
+
+      <section class="wrap scene c-cityscape" aria-labelledby="cityscape">
+        <div class="scene__text">
+          <h2 id="cityscape">Cityscape</h2>
+          <p>An open-source C++ model that builds a synthetic city from census and map data. It was putting 70% of homes on buildings that didn’t exist. I traced that to one misconfigured filter. <mark>Three merged pull requests</mark> later, 500,000+ buildings were back and 94% of homes sit on real ones.</p>
+          <p class="quiet">C++, OpenMP, OpenStreetMap, US Census data. First-author paper, revision submitted to <cite>Frontiers</cite>.</p>
+          <ul class="links">
+            <li><a href="https://github.com/raodj/cityscape/pulls?q=author%3APhanidharAkula" target="_blank" rel="noopener">Pull requests on GitHub</a></li>
+          </ul>
+        </div>
+
+        <figure class="fig city" data-figure="city">
+          <div class="fig__controls" role="group" aria-label="Show the model before or after the fix">
+            <button class="btn" type="button" aria-pressed="false" data-city="before">Before the fix</button>
+            <button class="btn" type="button" aria-pressed="true" data-city="after">After</button>
+          </div>
+          <div class="city__grid" aria-hidden="true"></div>
+          <p class="city__count" aria-hidden="true"><span class="num" data-num>94</span> of 100 homes on a real building</p>
+          <p class="sr-only" aria-live="polite" data-city-live>After the fix, 94 of 100 homes sit on a real building.</p>
+          <figcaption><span>Each square is 1% of homes.</span> <span>Blue is what the fix put back.</span></figcaption>
+        </figure>
+      </section>
+
+    </div>
+
+    <!--
+      The timeline. Each row carries the months it covers in data-from and
+      data-to (inclusive, or "now"). The script turns those into bars on one
+      shared scale. Without scripting it is still a plain, readable list.
+    -->
+    <section class="wrap when" data-figure="timeline" data-place="experience">
+      <div class="when__head">
+        <h2 id="experience">Experience</h2>
+        <p><span>Everything since 2020, drawn to scale.</span> <span>Work in color, school in gray.</span></p>
+      </div>
+
+      <div class="when__years" aria-hidden="true" data-years>
+        <span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span>
+      </div>
+
+      <ol class="rows" aria-labelledby="experience">
+        <li class="row c-lumi" data-from="2025-10" data-to="now">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">Oct 2025 – now</p>
+          <div class="row__what">
+            <h3>Founder and software engineer, Lumi AI</h3>
+            <p>Designed, built, deployed and run on my own. 220+ students and <mark>20,000+ AI interactions</mark> so far.</p>
+          </div>
+        </li>
+        <li class="row c-miami" data-from="2024-08" data-to="2026-07">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">Aug 2024 – Jul 2026</p>
+          <div class="row__what">
+            <h3>Computer science researcher, Miami University</h3>
+            <p>Traffic simulations on a supercomputer. <mark>Two first-author papers under review</mark>, at <mark class="c-simforge"><cite>IEEE T-ITS</cite></mark> and <mark class="c-cityscape"><cite>Frontiers</cite></mark>.</p>
+          </div>
+        </li>
+        <li class="row c-pathfinders" data-from="2024-01" data-to="2024-05">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">Jan – May 2024</p>
+          <div class="row__what">
+            <h3>Software engineer intern, Smart Pathfinders</h3>
+            <p>Built a client portal in React, Python and MySQL. <mark>180+ students</mark> used it to track applications and message their counselors.</p>
+          </div>
+        </li>
+        <li class="row c-freelance" data-from="2023-05" data-to="2023-12">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">May – Dec 2023</p>
+          <div class="row__what">
+            <h3>Freelance full-stack developer</h3>
+            <p>Moved two startups off spreadsheets and onto an online store and a gym check-in app. Both run on AWS, with <mark>300+ daily users</mark> between them.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="when__head">
+        <h2 id="education">Education</h2>
+      </div>
+
+      <ol class="rows" aria-labelledby="education">
+        <li class="row c-school" data-from="2024-08" data-to="2026-08">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">2024 – 2026</p>
+          <div class="row__what">
+            <h3>M.S. Computer Science, Miami University</h3>
+            <p><mark>GPA 3.86 on a full scholarship</mark>. President of the Graduate Students of Color Association (110+ members) and one of three students on the University Graduate Council.</p>
+          </div>
+        </li>
+        <li class="row c-school" data-from="2020-08" data-to="2024-05">
+          <div class="row__span" aria-hidden="true"><i></i><span data-length></span></div>
+          <p class="row__when">2020 – 2024</p>
+          <div class="row__what">
+            <h3>B.Tech. Computer Science, Malla Reddy University</h3>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!--
+      Skills. data-in lists the jobs each skill was used in. Picking a job
+      highlights its skills in that job's color.
+    -->
+    <section class="wrap sheet" aria-labelledby="skills" data-place="skills">
+      <h2 id="skills">Skills</h2>
+
+      <figure class="fig used" data-figure="used">
+        <p class="fig__ask">Pick one to see what I used there</p>
+        <div class="fig__controls" role="group" aria-label="Jobs and projects">
+          <button class="btn c-lumi" type="button" aria-pressed="false" data-job="lumi">Lumi AI</button>
+          <button class="btn c-simforge" type="button" aria-pressed="false" data-job="simforge">SimForge</button>
+          <button class="btn c-cityscape" type="button" aria-pressed="false" data-job="cityscape">Cityscape</button>
+          <button class="btn c-pathfinders" type="button" aria-pressed="false" data-job="pathfinders">Internship</button>
+          <button class="btn c-freelance" type="button" aria-pressed="false" data-job="freelance">Freelance</button>
+          <button class="btn" type="button" aria-pressed="false" data-job="side">Side Projects</button>
+        </div>
+
+        <dl class="rows used__list">
+          <div class="row">
+            <dt class="row__when">Languages</dt>
+            <dd class="row__what"><span class="swipe" data-in="simforge pathfinders freelance side">Python</span>, <span class="swipe" data-in="lumi side">TypeScript</span>, <span class="swipe" data-in="pathfinders freelance">JavaScript</span>, <span class="swipe" data-in="lumi pathfinders freelance">SQL</span>, <span class="swipe" data-in="cityscape">C++</span>, Java</dd>
+          </div>
+          <div class="row">
+            <dt class="row__when">Frontend</dt>
+            <dd class="row__what"><span class="swipe" data-in="lumi pathfinders freelance side">React</span>, Next.js, <span class="swipe" data-in="pathfinders freelance">Redux</span>, <span class="swipe" data-in="side">Tailwind CSS</span></dd>
+          </div>
+          <div class="row">
+            <dt class="row__when">Backend</dt>
+            <dd class="row__what"><span class="swipe" data-in="lumi">Node.js</span>, <span class="swipe" data-in="pathfinders">FastAPI</span>, <span class="swipe" data-in="pathfinders freelance">REST APIs</span>, <span class="swipe" data-in="lumi">OAuth</span>, <span class="swipe" data-in="lumi">PostgreSQL</span>, <span class="swipe" data-in="pathfinders freelance">MySQL</span>, <span class="swipe" data-in="lumi">Supabase</span></dd>
+          </div>
+          <div class="row">
+            <dt class="row__when">AI</dt>
+            <dd class="row__what"><span class="swipe" data-in="lumi">LLM integration</span>, <span class="swipe" data-in="lumi">RAG</span>, <span class="swipe" data-in="lumi">prompt caching</span>, <span class="swipe" data-in="side">PyTorch</span></dd>
+          </div>
+          <div class="row">
+            <dt class="row__when">DevOps</dt>
+            <dd class="row__what"><span class="swipe" data-in="simforge">Docker</span>, <span class="swipe" data-in="simforge">GitHub Actions</span>, <span class="swipe" data-in="simforge">CI/CD</span>, <span class="swipe" data-in="simforge">pytest</span>, <span class="swipe" data-in="freelance">AWS</span>, <span class="swipe" data-in="lumi">Vercel</span>, <span class="swipe" data-in="simforge cityscape">Linux</span>, <span class="swipe" data-in="lumi simforge cityscape side">Git</span></dd>
+          </div>
+          <div class="row">
+            <dt class="row__when">Supercomputing</dt>
+            <dd class="row__what"><span class="swipe" data-in="simforge cityscape">SLURM</span>, <span class="swipe" data-in="simforge cityscape">OpenMP</span>, <span class="swipe" data-in="simforge">Apptainer</span></dd>
+          </div>
+        </dl>
+        <p class="sr-only" aria-live="polite" data-used-live></p>
+      </figure>
+    </section>
+
+    <section class="wrap sheet" aria-labelledby="references">
+      <h2 id="references">References</h2>
+      <div class="rows quotes">
+        <figure class="quote">
+          <blockquote>
+            <p>In our research work, he consistently <mark>translated abstract ideas into working, reproducible systems</mark> and demonstrated solid judgment when reasoning about performance and design trade-offs.</p>
+          </blockquote>
+          <figcaption>Dr. DJ Rao, Associate Professor, Miami University</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>
+            <p>He communicated clearly, adapted quickly to feedback, and <mark>wrote code that was easy for the team to maintain</mark> and build on.</p>
+          </blockquote>
+          <figcaption>Rakesh Reddy, Founder and CEO, Smart Pathfinders</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- The last highlight on the page is the whole contact block. -->
+  <footer class="band" id="contact" data-figure="band" data-place="contact">
+    <section class="wrap sheet contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="contact__body">
+        <p>I’m looking for a full-time software engineering role. Email is the fastest way to reach me.</p>
+        <p class="contact__email">
+          <a href="mailto:phanidharakula@gmail.com" data-email>phanidharakula@gmail.com</a>
+        </p>
+        <ul class="actions">
+          <li><button class="btn btn--ink" type="button" data-copy="phanidharakula@gmail.com"><span data-copy-label aria-live="polite">Copy address</span></button></li>
+          <li><a href="https://www.linkedin.com/in/phanidharakula" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/PhanidharAkula" target="_blank" rel="me noopener">GitHub</a></li>
+          <li><a href="assets/Phanidhar_Akula_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="wrap foot">
+      <p>Phanidhar Akula, <span data-year>2026</span>. Tampa, Florida.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
 </html>

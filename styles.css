@@ -1,0 +1,1546 @@
+/*
+  phanidhar.dev
+
+  One typeface, black ink, white paper, and a pack of highlighters.
+  A highlight always means the same thing: this is the part worth reading.
+  Yellow is me. Each project has a color of its own, and keeps it wherever
+  it turns up on the page.
+*/
+
+/* Schibsted Grotesk, kept in the site folder so the page asks no other
+   server for it. One file holds every weight from 400 to 700, and a second
+   holds the italic. Both cover Latin letters, which is all the page uses. */
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("assets/fonts/schibsted-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/schibsted-grotesk-italic.woff2") format("woff2");
+}
+
+/* Stand-ins for Schibsted Grotesk while it loads. Each weight is resized to
+   the real font's width and given its line metrics, so nothing moves when
+   the real one arrives. */
+@font-face {
+  font-family: "Schibsted Fallback";
+  font-weight: 400;
+  src: local("Arial");
+  size-adjust: 104.2%;
+  ascent-override: 93.8%;
+  descent-override: 24.8%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Schibsted Fallback";
+  font-weight: 500;
+  src: local("Arial");
+  size-adjust: 105.7%;
+  ascent-override: 92.4%;
+  descent-override: 24.4%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Schibsted Fallback";
+  font-weight: 600;
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  size-adjust: 99.7%;
+  ascent-override: 98%;
+  descent-override: 25.9%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: only light;
+
+  --paper: #fff;
+  --ink: #000;
+  --graphite: #5b5b5b;
+  --fog: #ececec;
+
+  --yellow: #ffe12a;
+  --pink: #ffa0cd;
+  --green: #80f695;
+  --blue: #84d6ff;
+  --orange: #ffb463;
+  --violet: #cfb4ff;
+
+  /* Whichever highlighter is in hand. Sections swap it with a .c- class. */
+  --marker: var(--yellow);
+
+  /* The reader's pen: the color letters turn while they are selected, and a
+     paler one for letters that sit on black. */
+  --pen: #002ede;
+  --pen-pale: #8ab0fe;
+
+  --font: "Schibsted Grotesk", "Schibsted Fallback", system-ui, sans-serif;
+
+  --t-small: 0.9375rem;
+  --t-body: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem);
+  --t-lead: clamp(1.125rem, 1.04rem + 0.45vw, 1.375rem);
+  --t-title: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
+  --t-statement: clamp(1.75rem, min(0.9rem + 2.9vw, 7.4vh), 3.25rem);
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --gap: clamp(2.5rem, 6vw, 6rem);
+  --space-scene: clamp(6rem, 4rem + 9vw, 11rem);
+  --space-sheet: clamp(3.5rem, 2.6rem + 3.6vw, 5.5rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-marker: cubic-bezier(0.3, 0.7, 0.2, 1);
+  --spring: cubic-bezier(0.3, 1.35, 0.5, 1);
+}
+
+@supports (color: oklch(0% 0 0)) {
+  :root {
+    --graphite: oklch(47% 0 0);
+    --fog: oklch(94% 0 0);
+    --yellow: oklch(91% 0.18 98);
+    --pink: oklch(82% 0.13 352);
+    --green: oklch(88% 0.17 148);
+    --blue: oklch(84% 0.1 232);
+    --orange: oklch(84% 0.14 62);
+    --violet: oklch(82% 0.11 300);
+    --pen: oklch(44% 0.26 264);
+    --pen-pale: oklch(76% 0.12 264);
+  }
+}
+
+.c-lumi {
+  --marker: var(--pink);
+}
+
+.c-simforge {
+  --marker: var(--green);
+}
+
+.c-cityscape {
+  --marker: var(--blue);
+}
+
+.c-pathfinders {
+  --marker: var(--orange);
+}
+
+.c-freelance {
+  --marker: var(--violet);
+}
+
+/* A real spring, with a little overshoot, where the browser can do one. */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --spring: linear(0, 0.066, 0.215, 0.393, 0.566, 0.715, 0.833, 0.92, 0.978, 1.013, 1.032, 1.038, 1.037, 1.032, 1.026, 1.019, 1.013, 1.008, 1.004, 1.001, 1);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 7.5rem;
+  /* No scrollbar is drawn on any device. The page still scrolls by wheel,
+     trackpad, keys and touch. */
+  scrollbar-width: none;
+}
+
+/* The same, for browsers that do not know scrollbar-width yet. */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clicking a section link glides there, but only once the page has loaded
+   (the script adds this class a moment after). Until then any scrolling the
+   browser does on its own, to a "#section" in the address, is a straight
+   jump, so the page never opens at the top and then slides down. */
+html.is-settled {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selecting changes the letters and nothing else: they turn pen blue, and no
+   block is painted behind them. A filled selection covers the full height of
+   every line and whatever else the drag crosses, so paragraphs and the photo
+   turned into slabs. The blue is not one of the highlighters and is dark
+   enough to read on top of all of them. */
+::selection {
+  background: transparent;
+  color: var(--pen);
+}
+
+/* The pen would not show on black, so letters there turn a paler blue. Once
+   a black button has filled with color under the pointer, the pen is back. */
+.btn--ink::selection,
+.btn--ink ::selection,
+.skip::selection {
+  color: var(--pen-pale);
+}
+
+@media (hover: hover) {
+  .btn--ink:hover::selection,
+  .btn--ink:hover ::selection {
+    color: var(--pen);
+  }
+}
+
+.btn--ink:active::selection,
+.btn--ink:active ::selection {
+  color: var(--pen);
+}
+
+/* A picture is not text, so a drag across it leaves it be. */
+img {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h2 {
+  font-size: var(--t-title);
+  font-weight: 600;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+/* Italics are kept for two things: the names of journals, and the small
+   notes that sit under a picture or a demo. A journal's name stays in one
+   piece, so "IEEE T-ITS" never splits at its hyphen. */
+cite {
+  font-style: italic;
+  white-space: nowrap;
+}
+
+h3 {
+  font-size: inherit;
+  font-weight: 600;
+  line-height: inherit;
+}
+
+/* No paragraph, job title, note or list ends on a single stranded word. */
+p,
+h3,
+dd,
+figcaption {
+  text-wrap: pretty;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* A heading that focus was moved to by a section link is not a control, so it
+   takes no ring. The next press of Tab goes on from there. */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.wrap {
+  max-width: calc(74rem + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.quiet {
+  color: var(--graphite);
+  font-size: var(--t-small);
+  line-height: 1.5;
+}
+
+/* Keeps "full-time" and "142-hour" from breaking at the hyphen. */
+.nb {
+  white-space: nowrap;
+}
+
+
+/* Arriving ---------------------------------------------------------------
+   The whole page comes in together, once, when it loads: a short fade and a
+   small rise. Nothing fades in again after that. From then on the only thing
+   that moves as you scroll is the highlighter. */
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+.js .top,
+.js main,
+.js .band {
+  animation: arrive 560ms var(--ease-out) backwards;
+}
+
+
+/* The marker ---------------------------------------------------------- */
+
+/* <mark> is a highlight that is part of the text. .swipe is one the reader
+   turns on and off, in the demos. */
+mark,
+.swipe {
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 calc(50% + 0.02em);
+  background-size: 100% 1em;
+  margin-inline: -0.14em;
+  padding-inline: 0.14em;
+  border-radius: 0.07em;
+}
+
+/* With scripting on, marks start undrawn and get swept in as you reach them. */
+.js mark,
+.swipe {
+  background-size: 0% 1em;
+  transition: background-size var(--dur, 480ms) var(--ease-marker) var(--delay, 0ms);
+}
+
+.js mark.is-drawn,
+.swipe.is-on {
+  background-size: 100% 1em;
+}
+
+/* The claims in the opening sentence are links down to their proof. They
+   already wear a highlight, so they skip the usual link dress. */
+.jump {
+  /* A little more to touch, above and below. On a link inside a sentence
+     this changes nothing about how the lines are spaced. */
+  padding-block: 0.2em;
+  background-image: none;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .jump:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.14em;
+  }
+}
+
+
+/* Links: underlined, and the marker follows your pointer in and out ---- */
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.22em;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat var(--from, left) calc(50% + 0.02em) / 0% 1em;
+  transition: background-size 320ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-size: 100% 1em;
+  }
+}
+
+a:active,
+a:focus-visible {
+  background-size: 100% 1em;
+}
+
+/* Lists of links get a comfortable tap target without changing how they look. */
+.actions,
+.links,
+.top__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.75rem;
+}
+
+/* The padding makes each one at least a fingertip wide and tall. The negative
+   margin keeps the words exactly where they were, and the highlight is held
+   to the words, not the padding. */
+.actions a:not(.btn),
+.links a,
+.top__nav a,
+.foot a {
+  display: inline-block;
+  margin-inline: -0.5rem;
+  padding: 0.6rem 0.5rem;
+  background-origin: content-box;
+  background-clip: content-box;
+}
+
+/* On a phone the button takes the full row, with the links under it. */
+@media (max-width: 33.99rem) {
+  .actions li:first-child {
+    flex-basis: 100%;
+  }
+
+  .actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* Buttons ---------------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1.05rem 0.06em;
+  border: 0;
+  border-radius: 0.1875rem;
+  background: var(--fog);
+  color: var(--ink);
+  font-size: var(--t-small);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 160ms linear, transform 160ms var(--ease-out);
+}
+
+/* The fill is a background that grows, drawn the same way as the highlights,
+   and not a block that gets scaled. Safari lifts a scaled block onto a layer
+   of its own while it moves and lines that layer up a pixel off the button,
+   which left a line of the button's own color along the top and left until
+   the fill had finished. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat var(--from, left) center / 0% 100%;
+  transition: background-size 340ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .btn:hover::before {
+    background-size: 100% 100%;
+  }
+
+  .btn--ink:hover {
+    color: var(--ink);
+  }
+}
+
+.btn[aria-pressed="true"]::before {
+  background-size: 100% 100%;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--ink:active {
+  color: var(--ink);
+}
+
+.btn--ink:active::before {
+  background-size: 100% 100%;
+}
+
+/* A button sitting in a row of links is set at their size. */
+.actions .btn {
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+  font-size: var(--t-body);
+}
+
+
+/* Top bar ----------------------------------------------------------------- */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: env(safe-area-inset-top);
+  background: var(--paper);
+}
+
+.top::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: var(--fog);
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+
+.top.is-stuck::after {
+  opacity: 1;
+}
+
+/* While you are inside a project, a line in its color runs under the bar.
+   The script adds two of these: the color you are leaving, and the one
+   sweeping in over it. */
+.top__mark {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 3px;
+  background: var(--marker);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.top__inner {
+  display: flex;
+  align-items: center;
+  column-gap: 1.75rem;
+  min-height: 4rem;
+}
+
+.top__name {
+  padding-block: 0.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* On a phone the spare links take the right-hand end of the bar, on one line. */
+.top__nav {
+  margin-left: auto;
+  flex-wrap: nowrap;
+}
+
+/* Section links. A phone has no room for them beside the name, and there
+   the page is one thumb-scroll long anyway, so they start at tablet width. */
+.top__places {
+  display: none;
+}
+
+@media (min-width: 44rem) {
+  /* From here up, the section links own the right-hand end and never move.
+     The spare link sits beside the name instead. */
+  .top__nav {
+    margin-left: 0;
+  }
+
+  .top__places {
+    display: flex;
+    align-items: center;
+    column-gap: 1.75rem;
+    margin-left: auto;
+  }
+
+  .top__places a {
+    display: inline-block;
+    margin-inline: -0.3em;
+    padding: 0.6rem 0.3em;
+    text-decoration: none;
+  }
+
+  /* The section you are in wears the highlight, in that section's color. */
+  .top__places a[aria-current] {
+    background-size: 100% 1em;
+  }
+
+  /* "Contact" already leads to the address, so the bar keeps only the resume. */
+  .top__nav a[href^="mailto:"] {
+    display: none;
+  }
+}
+
+/* The links in the bar are a spare set. They show only while neither the
+   opening's links nor the contact block's are on screen, so the same link
+   never appears twice in one view. Without scripting they simply stay. */
+.js .top__nav {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.35rem);
+  transition: opacity 180ms linear, transform 280ms var(--ease-out), visibility 0s linear 180ms;
+}
+
+.js .top.has-links .top__nav {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* The very smallest phones need everything in the bar a little closer
+   together, and below that there is only room for the name and the resume. */
+@media (max-width: 22rem) {
+  .top__inner,
+  .top__nav {
+    column-gap: 1rem;
+  }
+}
+
+@media (max-width: 19.5rem) {
+  .top__nav a[href^="mailto:"] {
+    display: none;
+  }
+}
+
+
+/* Hero -------------------------------------------------------------------- */
+
+.hero {
+  display: grid;
+  row-gap: 2rem;
+  padding-top: clamp(1rem, 5vw - 0.5rem, 5.5rem);
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.me picture {
+  flex: none;
+  width: 6rem;
+}
+
+.me img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.js .me img {
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+
+.js .me img.is-in {
+  opacity: 1;
+}
+
+.me figcaption {
+  color: var(--graphite);
+  font-size: var(--t-small);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.me mark {
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.statement {
+  max-width: 21em;
+  font-size: var(--t-statement);
+  font-weight: 500;
+  line-height: 1.17;
+}
+
+.intro {
+  max-width: 31em;
+  margin-top: clamp(1.25rem, 2.6vw, 2rem);
+  font-size: var(--t-lead);
+  line-height: 1.45;
+}
+
+.hero .actions {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  row-gap: 0.25rem;
+}
+
+@media (min-width: 56rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) clamp(13rem, 20vw, 17rem);
+    column-gap: var(--gap);
+    align-items: start;
+  }
+
+  .hero__text {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .me {
+    grid-column: 2;
+    grid-row: 1;
+    /* The portrait hangs from the top of the row and its caption sits on the
+       bottom, level with the links on the left, so the two halves of the
+       opening start and end together. */
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    /* Drop the portrait so the top of the head sits on the cap line of the
+       statement beside it, not on the top of the line box. */
+    padding-top: calc(var(--t-statement) * 0.24 - 0.75rem);
+  }
+
+  /* With no box around it, the cutout can be wider than its column. It is
+     pinned to the top right and grows to the left across the gap, stopping a
+     little short of the text column. */
+  .me picture {
+    --wide: calc((100% + var(--gap) - 0.5rem) / 0.91);
+    display: block;
+    width: var(--wide);
+    margin-left: calc(100% - var(--wide));
+    /* The last stretch of the image is fully faded, so the caption may rise into it. */
+    margin-bottom: -1.75rem;
+  }
+
+  /* Lifted just enough that its words share a baseline with the links. */
+  .me figcaption {
+    margin-top: auto;
+    padding-bottom: 0.75rem;
+  }
+}
+
+/* On the narrower two-column screens the photo reaches only halfway across
+   the gap, so it keeps a comfortable distance from the sentence beside it. */
+@media (min-width: 56rem) and (max-width: 69.99rem) {
+  .me picture {
+    --wide: calc((100% + var(--gap) * 0.5) / 0.91);
+  }
+}
+
+
+/* Work -------------------------------------------------------------------- */
+
+.scene {
+  display: grid;
+  row-gap: 2.5rem;
+  padding-top: var(--space-scene);
+}
+
+.scene__text p {
+  max-width: 34em;
+  margin-top: 1rem;
+}
+
+.scene__text .quiet {
+  margin-top: 0.9rem;
+}
+
+.links {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 56rem) {
+  .scene,
+  .sheet {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--gap);
+    align-items: first baseline;
+  }
+}
+
+
+/* Figures ------------------------------------------------------------------ */
+
+.fig figcaption {
+  color: var(--graphite);
+  font-size: var(--t-small);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+/* A note of two sentences breaks at the period, never inside a sentence. */
+.fig figcaption span {
+  display: inline-block;
+}
+
+.fig__ask {
+  font-weight: 500;
+}
+
+.fig__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fig__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Counting numbers. Each digit sits in a cell as wide as a zero, so a number
+   can tick without the digits beside it shuffling sideways. */
+.num {
+  display: inline-block;
+  color: var(--ink);
+  font-size: var(--t-title);
+  font-weight: 500;
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.num span {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+}
+
+/* Lumi: ask the notes */
+
+.ask .fig__controls {
+  margin-top: 0.9rem;
+}
+
+/* The notes are set at the same size as the rest of the text in Work. */
+.ask__notes {
+  margin-top: 1.75rem;
+  color: var(--graphite);
+  font-size: var(--t-body);
+  line-height: 1.5;
+}
+
+.ask__notes .swipe {
+  transition: background-size var(--dur, 420ms) var(--ease-marker), color 200ms linear;
+}
+
+.ask__notes .swipe.is-on {
+  color: var(--ink);
+}
+
+.ask figcaption {
+  margin-top: 1.5rem;
+}
+
+/* SimForge: the race */
+
+.race__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+}
+
+.race__row + .race__row {
+  margin-top: 2.25rem;
+}
+
+.race__label {
+  font-weight: 500;
+}
+
+.race__time {
+  color: var(--graphite);
+  text-align: right;
+}
+
+.race__time .num {
+  min-width: 4.4ch;
+  margin-right: 0.12em;
+}
+
+.race__track {
+  grid-column: 1 / -1;
+  height: 0.875rem;
+  margin-top: 0.7rem;
+}
+
+.race__line {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  transform-origin: left center;
+}
+
+/* 7.1 of 141.9 hours */
+.race__row--after .race__line {
+  width: 5.0035%;
+  background: var(--marker);
+}
+
+/* Cityscape: the grid */
+
+.city__grid {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  gap: clamp(3px, 0.5vw, 6px);
+  margin-top: 1.75rem;
+}
+
+.city__grid i {
+  aspect-ratio: 1;
+  background: var(--fog);
+  transform: scale(0.42);
+  transition:
+    transform 520ms var(--spring) var(--d, 0ms),
+    background-color 140ms linear var(--d, 0ms);
+}
+
+.city__grid .was-real {
+  background: var(--ink);
+  transform: none;
+}
+
+.city[data-state="after"] .got-fixed {
+  background: var(--marker);
+  transform: none;
+}
+
+.city__count {
+  margin-top: 1.5rem;
+  color: var(--graphite);
+}
+
+.city__count .num {
+  min-width: 2ch;
+  margin-right: 0.1em;
+}
+
+.city figcaption {
+  margin-top: 0.5rem;
+}
+
+
+/* The CV half of the page ---------------------------------------------- */
+
+.sheet {
+  display: grid;
+  row-gap: 1.5rem;
+  padding-top: var(--space-sheet);
+}
+
+.rows {
+  display: grid;
+  row-gap: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+.row {
+  display: grid;
+  row-gap: 0.15rem;
+}
+
+.row__when {
+  color: var(--graphite);
+  white-space: nowrap;
+}
+
+.row__what p {
+  max-width: 36em;
+  margin-top: 0.2rem;
+}
+
+@media (min-width: 34rem) {
+  .row {
+    grid-template-columns: 11.75rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: first baseline;
+  }
+}
+
+
+/* Experience and education, on one time scale -------------------------- */
+
+.when {
+  /* How many months the scale covers, and how long it takes to draw.
+     The script sets --months so the scale always ends this year. */
+  --months: 84;
+  --years: 7;
+  --clock: 1700ms;
+  padding-top: var(--space-scene);
+}
+
+.when__head {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.when__head p {
+  max-width: 36em;
+  text-wrap: balance;
+}
+
+/* Each sentence of the note holds together. They share a line when there is
+   room, and when there is not, the line ends at the period. */
+.when__head p span {
+  display: inline-block;
+}
+
+.when .rows {
+  row-gap: clamp(1.75rem, 2.8vw, 2.4rem);
+  margin-top: 1.75rem;
+}
+
+.when .rows + .when__head {
+  margin-top: var(--space-sheet);
+}
+
+/* Bars and the year scale only exist once the script has placed them. */
+.when__years,
+.row__span {
+  display: none;
+}
+
+.js .when__years {
+  display: grid;
+  grid-template-columns: repeat(var(--years), minmax(0, 1fr));
+  margin-top: 2.25rem;
+  color: var(--graphite);
+  font-size: var(--t-small);
+  line-height: 1.2;
+}
+
+.js .when__years + .rows {
+  margin-top: 0.9rem;
+}
+
+/* Each row gets its own strip of the ruler: a faint tick at every new year,
+   and one more to close the scale. */
+.js .row__span {
+  display: block;
+  position: relative;
+  height: 1.125rem;
+  margin-bottom: 0.6rem;
+  background:
+    linear-gradient(var(--fog), var(--fog)) right / 1px 100% no-repeat,
+    repeating-linear-gradient(to right, var(--fog) 0 1px, transparent 1px calc(100% / var(--years)));
+}
+
+/* --a and --b are the first month and the month after the last, counted
+   from the start of the scale. */
+.row__span i {
+  position: absolute;
+  inset-block: 0;
+  left: calc(var(--a) / var(--months) * 100%);
+  width: calc((var(--b) - var(--a)) / var(--months) * 100%);
+  background: var(--bar, var(--marker));
+  transform-origin: left center;
+}
+
+/* The length of each bar, in words. It sits on a patch of paper so the
+   year ticks don't run through the letters. */
+.row__span span {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--b) / var(--months) * 100% + 0.2rem);
+  transform: translateY(-50%);
+  padding: 0.15em 0.4em;
+  background: var(--paper);
+  color: var(--graphite);
+  font-size: var(--t-small);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* When a bar ends near the right edge, its length goes on the other side. */
+.row__span.is-flipped span {
+  left: auto;
+  right: calc(100% - var(--a) / var(--months) * 100% + 0.2rem);
+}
+
+/* The research job produced both SimForge and Cityscape, so it wears both. */
+.c-miami .row__span i {
+  background: linear-gradient(var(--green) 50%, var(--blue) 50%);
+}
+
+.c-school {
+  --bar: var(--fog);
+}
+
+/* Time runs left to right at one speed for every bar, so a four-year
+   degree takes four times as long to draw as a one-year job. */
+.js .rows:not(.is-live) .row__span i {
+  transform: scaleX(0);
+}
+
+.js .rows:not(.is-live) .row__span span {
+  opacity: 0;
+}
+
+.rows.is-live .row__span i {
+  transition: transform calc(var(--clock) * (var(--b) - var(--a)) / var(--months)) linear calc(var(--clock) * (var(--a) - var(--a0, 0)) / var(--months));
+}
+
+.rows.is-live .row__span span {
+  transition: opacity 260ms linear calc(var(--clock) * (var(--b) - var(--a0, 0)) / var(--months));
+}
+
+@media (min-width: 34rem) {
+  .when .row__span {
+    grid-column: 1 / -1;
+  }
+}
+
+/* When the years sit too close to read, they drop the century: ’24 for 2024.
+   The script decides, by measuring. */
+.when__years.is-tight span {
+  font-size: 0;
+}
+
+.when__years.is-tight span::before {
+  content: attr(data-short);
+  font-size: var(--t-small);
+}
+
+@media (min-width: 56rem) {
+  .when__head {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--gap);
+    align-items: first baseline;
+  }
+}
+
+/* Between a tablet and a laptop there is not room for bars, dates and text
+   side by side without squeezing the text into a sliver. There the whole list
+   sits in the right-hand column, under the note, and each entry stacks the way
+   it does on a phone. */
+@media (min-width: 56rem) and (max-width: 69.99rem) {
+  .js .when__years,
+  .when .rows {
+    margin-left: calc((100% - var(--gap)) * 5 / 12 + var(--gap));
+  }
+
+  .when .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The skill labels are short, so their column can give some room back. */
+  .used__list .row {
+    grid-template-columns: 9rem minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 70rem) {
+  .js .when__years {
+    width: calc((100% - var(--gap)) * 5 / 12);
+  }
+
+  /* bars | gap | dates | gap | text, so the bars sit in the heading column
+     and the text lines up with every other section. */
+  .when .row {
+    grid-template-columns: calc((100% - var(--gap)) * 5 / 12) var(--gap) 11.75rem 1.5rem minmax(0, 1fr);
+    column-gap: 0;
+  }
+
+  .when .row__span {
+    grid-column: 1;
+    align-self: start;
+    margin: calc((1.5em - 1.125rem) / 2) 0 0;
+  }
+
+  .when .row__when {
+    grid-column: 3;
+  }
+
+  .when .row__what {
+    grid-column: 5;
+  }
+}
+
+
+/* Skills: pick a job, see what was used there ---------------------------- */
+
+/* Six choices in a tidy block of equal buttons: three across where the
+   longest label fits three across, otherwise two. The columns work that out
+   from the room they have, so no label is ever broken or cut. */
+.used .fig__controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(9.2rem, calc(50% - 0.25rem)), 1fr));
+  max-width: 31rem;
+  margin-top: 0.9rem;
+}
+
+.used .btn {
+  justify-content: flex-start;
+  padding-inline: clamp(0.6rem, 3vw, 1.05rem);
+}
+
+/* A square of each one's color, so you can see the code before you press. */
+.used .btn::after {
+  content: "";
+  order: -1;
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+  margin-right: 0.65em;
+  background: var(--marker);
+}
+
+.used__list {
+  margin-top: 1.9rem;
+}
+
+.used__list .swipe {
+  white-space: nowrap;
+}
+
+
+/* References -------------------------------------------------------------- */
+
+.quotes {
+  row-gap: clamp(2rem, 3.4vw, 3rem);
+}
+
+.quote blockquote {
+  max-width: 29em;
+  font-size: var(--t-lead);
+  line-height: 1.42;
+}
+
+/* Hang the opening quote mark in the margin so the text edge stays straight. */
+.quote blockquote p::before {
+  content: "\201C";
+  position: absolute;
+  transform: translateX(-100%);
+  padding-right: 0.06em;
+}
+
+.quote blockquote p::after {
+  content: "\201D";
+}
+
+.quote figcaption {
+  margin-top: 0.6rem;
+  color: var(--graphite);
+  font-size: var(--t-small);
+}
+
+
+/* Contact: the last highlight is the whole block ----------------------- */
+
+.band {
+  /* On yellow, the highlighter in hand is white. */
+  --marker: var(--paper);
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--space-scene);
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--yellow);
+  transform-origin: left center;
+}
+
+.js .band::before {
+  transform: scaleX(0);
+  transition: transform 900ms var(--ease-marker);
+}
+
+.js .band.is-drawn::before {
+  transform: none;
+}
+
+.band .contact {
+  padding-top: clamp(4rem, 9vw, 7.5rem);
+}
+
+.contact__body {
+  container-type: inline-size;
+}
+
+.contact__body p {
+  max-width: 30em;
+}
+
+/* The address is as large as its column allows and always stays on one line.
+   Its size is set from the width of the column it sits in (7.3% of it fits
+   the 24 characters with a little to spare). The first size is for browsers
+   that cannot measure a column yet. */
+.contact__email {
+  margin-top: 1.5rem;
+  font-size: clamp(1.125rem, min(0.9rem + 2.4vw, 6.5vw), 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+@supports (width: 1cqi) {
+  .contact__email {
+    font-size: clamp(1.125rem, 7.3cqi, 2.75rem);
+  }
+}
+
+.contact__email a {
+  /* More to touch above and below, without moving the line. */
+  padding-block: 0.5em;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.16em;
+  transition-duration: 480ms;
+}
+
+.contact__email a.is-copied {
+  background-size: 100% 1em;
+}
+
+.contact .actions {
+  margin-top: 1.75rem;
+  row-gap: 0.25rem;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: clamp(4rem, 9vw, 7.5rem);
+  font-size: var(--t-small);
+}
+
+/* Smaller type, so a little more padding to keep it a full-sized target. */
+.foot a {
+  padding-block: 0.75rem;
+}
+
+
+/* Quieter for people who ask for it ------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html.is-settled {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .js .top,
+  .js main,
+  .js .band {
+    animation: none;
+  }
+}
+
+
+/* Paper ------------------------------------------------------------------- */
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  :root {
+    --t-body: 10.5pt;
+    --t-small: 9pt;
+    --t-lead: 11.5pt;
+    --t-title: 15pt;
+    --t-statement: 19pt;
+    --space-scene: 9mm;
+    --space-sheet: 7mm;
+    --gutter: 0px;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .skip,
+  .ask,
+  .race,
+  .city,
+  .foot,
+  .top__nav,
+  .top__places,
+  .top__mark,
+  .hero .actions,
+  .used .fig__ask,
+  .used .fig__controls,
+  .contact .actions li:has(.btn),
+  .contact .actions li:has(a[href$=".pdf"]) {
+    display: none;
+  }
+
+  /* No margin to hang the quote mark in once the gutters are gone. */
+  .quote blockquote p::before {
+    position: static;
+    transform: none;
+    padding: 0;
+  }
+
+  /* Keep the name at the head of the sheet. */
+  .top {
+    position: static;
+  }
+
+  .top__inner {
+    min-height: 0;
+    padding-bottom: 5mm;
+  }
+
+  .top__name {
+    padding: 0;
+    font-size: 13pt;
+  }
+
+  .js mark {
+    background-size: 100% 1em;
+  }
+
+  .js .me img {
+    opacity: 1;
+  }
+
+  .js .top,
+  .js main,
+  .js .band {
+    animation: none;
+  }
+
+  /* Bars print finished. The yellow block doesn't print at all: that much
+     ink on paper helps nobody. */
+  .js .rows:not(.is-live) .row__span i {
+    transform: none;
+  }
+
+  .js .rows:not(.is-live) .row__span span {
+    opacity: 1;
+  }
+
+  /* Hairline ticks come out patchy on paper, so the bars print without them. */
+  .js .row__span {
+    background: none;
+  }
+
+  .band {
+    margin-top: var(--space-sheet);
+  }
+
+  .band::before {
+    display: none;
+  }
+
+  .band .contact {
+    padding-top: 0;
+  }
+
+  /* On paper the address is set at the size of the opening sentence. */
+  .contact__email {
+    font-size: var(--t-statement);
+  }
+
+  .hero {
+    padding-top: 0;
+  }
+
+  .scene,
+  .row,
+  .quote,
+  .contact {
+    break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Links are useless on paper unless you can read where they go. */
+  .links,
+  .contact .actions {
+    display: block;
+    font-size: var(--t-small);
+  }
+
+  .links a,
+  .contact .actions a {
+    margin: 0;
+    padding: 0;
+  }
+
+  .links a::after,
+  .contact .actions a::after {
+    content: "  " attr(href);
+    color: var(--graphite);
+  }
+}
